@@ -1,0 +1,45 @@
+
+package Beans;
+
+import java.sql.Date;
+
+public class CreditCardBean {
+    private String cardname;
+    private String cardno;
+    private String cardtype;
+    private Date cardexpdate;
+
+    public String getCardname() {
+        return cardname;
+    }
+
+    public void setCardname(String cardname) {
+        this.cardname = cardname;
+    }
+
+    public String getCardno() {
+        return cardno;
+    }
+
+    public void setCardno(String cardno) {
+        this.cardno = cardno;
+    }
+
+    public String getCardtype() {
+        return cardtype;
+    }
+
+    public void setCardtype(String cardtype) {
+        this.cardtype = cardtype;
+    }
+
+    public Date getCardexpdate() {
+        return cardexpdate;
+    }
+
+    public void setCardexpdate(Date cardexpdate) {
+        this.cardexpdate = cardexpdate;
+    }
+    
+       
+}
