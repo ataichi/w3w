@@ -3,7 +3,6 @@ package Servlet;
 import Beans.AccountBean;
 import DAO.Implementation.AccountDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
-import DAOInterface.AccountInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,17 +22,18 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
-            AccountBean user = new AccountBean();
+            AccountBean account = new AccountBean();
             String username = request.getParameter("loguser");
             String password = request.getParameter("logpass");
 
- //           AccountDAOInterface userdao = new AccountDAOImplementation();
-            
-            if (user.getPassword().equals(password)) {      
-                session.setAttribute("user", user);
-                //response.sendRedirect("shop.jsp");
-            }else{
-                //response.sendRedirect("home.html");
+            AccountDAOInterface accountdao = new AccountDAOImplementation();
+            account = accountdao.getUser(username);
+
+            if (account.getPassword().equals(password)) {
+        //        session.setAttribute("user", account);
+                response.sendRedirect("shop.jsp");
+            } else {
+                response.sendRedirect("home.html");
             }
 
         } finally {

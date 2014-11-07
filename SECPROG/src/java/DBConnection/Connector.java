@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class Connector {
     private String username = "root";
     private String password = "root";
-    private String url = "jdbc:mysql://localhost:3306/wa";
+    private String url = "jdbc:mysql://localhost:3306/foobar";
     private String driver = "com.mysql.jdbc.Driver";
     
     public Connection getConnection(){

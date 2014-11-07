@@ -1,6 +1,9 @@
 
 package DAO.Interface;
 
-public class AccountDAOInterface {
-    
+import Beans.AccountBean;
+
+public interface AccountDAOInterface {
+    public boolean addAccount(AccountBean accountBean);
+    public AccountBean getUser(String username);
 }
