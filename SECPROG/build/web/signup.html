@@ -11,6 +11,41 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+         <form id="signform" name="signin" action="SignupServlet" onsubmit="return signcheck();" method="post">
+                        <table>
+                            <tr>
+                                <td>First Name</td>
+                                <td><input type='text' id='fname' name='fname' onblur="fnameCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td><input type='text' id='lname' name='lname' onblur="lnameCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td><input type='text' id='user' name='uname' onblur="unameCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td><input type='text' id='email' name='email' onblur="emailCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td>Birthday</td>
+                                <td><input type='date' id='bday' name='bday' onblur="bdayCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td><input type='password' id='pass1' name='pass1' onblur="passCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td>Verify Password</td>
+                                <td><input type='password' id='pass2' name='pass2' onblur="passCheck();" onfocus="backWhite(this);"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type='submit' id='sign' value='Signup'></td>
+                            </tr>
+                        </table>
+                    </form>
     </body>
 </html>
