@@ -46,9 +46,11 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
             ps.setInt(13, customerBean.getCustomer_accountID());
             ps.executeUpdate();
             connection.close();
+            
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    
+        return false;
+    }
 }
