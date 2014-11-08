@@ -33,7 +33,7 @@ CREATE TABLE `account` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `emailAdd` varchar(45) NOT NULL,
-  `prodtype` varchar(45) NOT NULL,
+  `accounttype` varchar(45) NOT NULL,
   PRIMARY KEY (`accountID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
