@@ -1,14 +1,14 @@
 package Beans;
 
 public class AccountBean {
-    private int accountID;
-    private String accountType;
-    private String firstName;
-    private String lastName;
-    private String middleInitial;
-    private String username;
-    private String password;
-    private String emailAdd;
+    protected int accountID;
+    protected String accountType;
+    protected String firstName;
+    protected String lastName;
+    protected String middleInitial;
+    protected String username;
+    protected String password;
+    protected String emailAdd;
 
     public int getAccountID() {
         return accountID;

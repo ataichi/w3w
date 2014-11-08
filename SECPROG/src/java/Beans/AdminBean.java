@@ -2,7 +2,7 @@
 package Beans;
 
 public class AdminBean {
-    private int id;
+    protected int id;
 
     public int getId() {
         return id;

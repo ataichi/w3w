@@ -2,9 +2,9 @@
 package Beans;
 
 public class AudioCDBean {
-    private int audiocdID;
-    private String artist;
-    private String recordCompany;
+    protected int audiocdID;
+    protected String artist;
+    protected String recordCompany;
 
     public String getArtist() {
         return artist;

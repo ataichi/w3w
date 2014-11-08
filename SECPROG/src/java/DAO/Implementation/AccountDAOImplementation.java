@@ -55,18 +55,17 @@ public class AccountDAOImplementation implements AccountDAOInterface{
 
     public boolean updateAccount(AccountBean accountBean) {
         int rowsAffected = 0;
-        String query = "UPDATE account SET name=?, email=?, password=?, confirmpass=?, birthday=?, sex=?, biography=? WHERE username=?";
+        int index = 1;
+        String query = "UPDATE account SET firstName=?, lastName=?, middleInitial=?, username=?, password=?, emailAdd=?, type=? WHERE username=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-  /*          preparedStatement.setString(1, accountBean.getName());
-            preparedStatement.setString(2, accountBean.getEmail());
-            preparedStatement.setString(3, accountBean.getPassword());
-            preparedStatement.setString(4, accountBean.getConfirmpass());
-            preparedStatement.setString(5, accountBean.getBirthday());
-            preparedStatement.setString(6, accountBean.getSex());
-            preparedStatement.setString(7, accountBean.getBiography());
-            preparedStatement.setString(8, accountBean.getUsername());
-*/
+            preparedStatement.setString(index++, accountBean.getFirstName());
+            preparedStatement.setString(index++, accountBean.getLastName());
+            preparedStatement.setString(index++, accountBean.getMiddleInitial());
+            preparedStatement.setString(index++, accountBean.getUsername());
+            preparedStatement.setString(index++, accountBean.getPassword());
+            preparedStatement.setString(index++, accountBean.getEmailAdd());
+            preparedStatement.setString(index++, accountBean.getAccountType());
             rowsAffected = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,14 +120,57 @@ public class AccountDAOImplementation implements AccountDAOInterface{
                 return bean;
             }
 
-            
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    
+    }
+    
+    @Override
+    public boolean doesUserExist(String username, String password)
+    {
+        boolean result = false;
+        String query = "SELECT * FROM account WHERE username = ? AND password = ?";
+        int index = 1; //use index nabasa ko sa ppt hehe
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(index++, username);
+            ps.setString(index++, password);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                result=true;
+            }
+            connection.close();
+        }
+        catch(SQLException ex)
+        { 
+            ex.printStackTrace();
+        }
+        return result;
+    }
 
-    
-    
+    @Override
+    public boolean isAdmin(String username, String password)
+    {
+        boolean result = false;
+        String query = "SELECT * FROM admin WHERE adminUsername = ? AND adminPassword = ?";
+        int index = 1;
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(index++, username);
+            ps.setString(index++, password);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                result=true;
+            }
+            connection.close();
+        }
+        catch(SQLException ex)
+        { ex.printStackTrace();}
+        return result;
     }
 }
    
