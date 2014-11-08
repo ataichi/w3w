@@ -64,6 +64,7 @@ public class SignupServlet extends HttpServlet {
             int postalcodeDA = Integer.valueOf(request.getParameter("postalcodeDA"));
             String countryDA = request.getParameter("countryDA");
             
+            int customer_accountID = userdao.getUser(username).getAccountID();
             
             CustomerBean customer = new CustomerBean();
             
