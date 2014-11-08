@@ -21,12 +21,29 @@ public class AccountDAOImplementation implements AccountDAOInterface{
     Connection connection = connector.getConnection();
 
     public boolean addAccount(AccountBean accountBean) {
-
-        int rowsAffected = 0;
-        String query = "INSERT INTO account(firstName, lastName, middleInitial, username, password, emailAdd, type) values (?,?,?,?,?,?,?)";
-
+        
         try {
-
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "insert into account (firstName, lastName, middleInitial, username, password, emailAd, accounttype) values (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, accountBean.getFirstName());
+            ps.setString(2, accountBean.getLastName());
+            ps.setString(3, accountBean.getMiddleInitial());
+            ps.setString(4, accountBean.getUsername());
+            ps.setString(5, accountBean.getPassword());
+            ps.setString(6, accountBean.getEmailAdd());
+            ps.setString(7, accountBean.getAccountType());
+            ps.executeQuery();
+            connection.close();
+            
+            return true;
+            /*
+            int rowsAffected = 0;
+            String query = "INSERT INTO account(firstName, lastName, middleInitial, username, password, emailAdd, type) values (?,?,?,?,?,?,?)";
+            
+            try {
+            
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, accountBean.getFirstName());
             preparedStatement.setString(2, accountBean.getLastName());
@@ -36,21 +53,25 @@ public class AccountDAOImplementation implements AccountDAOInterface{
             preparedStatement.setString(6, accountBean.getEmailAdd());
             preparedStatement.setString(7, accountBean.getAccountType());
             rowsAffected = preparedStatement.executeUpdate();
-
+            
+            } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+            if (connection != null) {
+            try {
+            connection.close();
+            } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            }
+            
+            return rowsAffected == 1;
+            */
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
-
-        return rowsAffected == 1;
-        
+        return false;
     }
 
     public boolean updateAccount(AccountBean accountBean) {

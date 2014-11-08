@@ -27,6 +27,7 @@ public class SignupServlet extends HttpServlet {
 
             String firstname = request.getParameter("fname");
             String lastname = request.getParameter("lname");
+            String mInitial = request.getParameter("mname");
             String email = request.getParameter("email");
             String username = request.getParameter("uname");
             String pass1 = request.getParameter("pass1");
@@ -34,17 +35,23 @@ public class SignupServlet extends HttpServlet {
             AccountBean account = new AccountBean();
             account.setFirstName(firstname);
             account.setLastName(lastname);
+            account.setMiddleInitial(mInitial);
             account.setPassword(pass1);
             account.setEmailAdd(email);
             account.setUsername(username);
-
-            AccountDAOInterface userdao = new AccountDAOImplementation();
+            account.setAccountType("customer");
+            
+            boolean check;
+            AccountDAOImplementation userdao = new AccountDAOImplementation();
+            check = userdao.addAccount(account);
+            /*
             if(userdao.addAccount(account)){
                 response.sendRedirect("home.html");
             }
             else{
                 response.sendRedirect("fail.jsp");
             }
+            */
         } finally {
             out.close();
         }
