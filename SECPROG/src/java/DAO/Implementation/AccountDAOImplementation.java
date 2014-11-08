@@ -25,7 +25,7 @@ public class AccountDAOImplementation implements AccountDAOInterface{
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            String query = "insert into account (firstName, lastName, middleInitial, username, password, emailAd, accounttype) values (?, ?, ?, ?, ?, ?, ?)";
+            String query = "insert into account (firstName, lastName, middleInitial, username, password, emailAdd, accounttype) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, accountBean.getFirstName());
             ps.setString(2, accountBean.getLastName());
@@ -34,7 +34,7 @@ public class AccountDAOImplementation implements AccountDAOInterface{
             ps.setString(5, accountBean.getPassword());
             ps.setString(6, accountBean.getEmailAdd());
             ps.setString(7, accountBean.getAccountType());
-            ps.executeQuery();
+            ps.executeUpdate();
             connection.close();
             
             return true;
