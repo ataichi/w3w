@@ -41,9 +41,11 @@ public class SignupServlet extends HttpServlet {
             account.setUsername(username);
             account.setAccountType("customer");
             
+            out.println("here");
             boolean check;
             AccountDAOImplementation userdao = new AccountDAOImplementation();
             check = userdao.addAccount(account);
+            out.println(check);
             /*
             if(userdao.addAccount(account)){
                 response.sendRedirect("home.html");
