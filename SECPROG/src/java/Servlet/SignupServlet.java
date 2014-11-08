@@ -2,6 +2,7 @@ package Servlet;
 
 import Beans.AccountBean;
 import DAO.Implementation.AccountDAOImplementation;
+import DAO.Interface.AccountDAOInterface;
 import DAOInterface.AccountInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,21 +29,22 @@ public class SignupServlet extends HttpServlet {
             String lastname = request.getParameter("lname");
             String email = request.getParameter("email");
             String username = request.getParameter("uname");
-            String birthday = request.getParameter("bday");
             String pass1 = request.getParameter("pass1");
 
-            AccountBean user = new AccountBean();
-            user.setFirstName(firstname);
-            user.setLastName(lastname);
-            user.setPassword(pass1);
-            user.setEmailAdd(email);
-            user.setUsername(username);
+            AccountBean account = new AccountBean();
+            account.setFirstName(firstname);
+            account.setLastName(lastname);
+            account.setPassword(pass1);
+            account.setEmailAdd(email);
+            account.setUsername(username);
 
-   //         AccountInterface userdao = new AccountDAOImplementation();
-   //         userdao.addUser(user);
-
-         
-            //response.sendRedirect("shop.jsp");
+            AccountDAOInterface userdao = new AccountDAOImplementation();
+            if(userdao.addAccount(account)){
+                response.sendRedirect("home.html");
+            }
+            else{
+                response.sendRedirect("fail.jsp");
+            }
         } finally {
             out.close();
         }

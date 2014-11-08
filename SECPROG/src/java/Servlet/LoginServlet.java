@@ -28,8 +28,12 @@ public class LoginServlet extends HttpServlet {
 
             AccountDAOInterface accountdao = new AccountDAOImplementation();
             account = accountdao.getUser(username);
-
-            if (account.getPassword().equals(password)) {
+/*           if(accountdao.isAdmin(username, password))
+            {
+                response.sendRedirect("admin.jsp");
+            }
+            else*/ 
+            if (username.equals(account.getUsername()) && password.equals(account.getPassword())) {
         //        session.setAttribute("user", account);
                 response.sendRedirect("shop.jsp");
             } else {
