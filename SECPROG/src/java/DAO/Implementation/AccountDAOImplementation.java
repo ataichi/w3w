@@ -38,36 +38,6 @@ public class AccountDAOImplementation implements AccountDAOInterface{
             connection.close();
             
             return true;
-            /*
-            int rowsAffected = 0;
-            String query = "INSERT INTO account(firstName, lastName, middleInitial, username, password, emailAdd, type) values (?,?,?,?,?,?,?)";
-            
-            try {
-            
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, accountBean.getFirstName());
-            preparedStatement.setString(2, accountBean.getLastName());
-            preparedStatement.setString(3, accountBean.getMiddleInitial());
-            preparedStatement.setString(4, accountBean.getUsername());
-            preparedStatement.setString(5, accountBean.getPassword());
-            preparedStatement.setString(6, accountBean.getEmailAdd());
-            preparedStatement.setString(7, accountBean.getAccountType());
-            rowsAffected = preparedStatement.executeUpdate();
-            
-            } catch (SQLException ex) {
-            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-            if (connection != null) {
-            try {
-            connection.close();
-            } catch (SQLException ex) {
-            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            }
-            }
-            
-            return rowsAffected == 1;
-            */
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -14,7 +14,17 @@ public class CustomerBean {
     private String cityDA;
     private int postalCodeDA;
     private String countryDA;
+    private int customer_accountID;
+    private int customerID;
 
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+    
     public int getApartmentNoBA() {
         return apartmentNoBA;
     }
@@ -110,6 +120,16 @@ public class CustomerBean {
     public void setCountryDA(String countryDA) {
         this.countryDA = countryDA;
     }
+
+    public int getCustomer_accountID() {
+        return customer_accountID;
+    }
+
+    public void setCustomer_accountID(int customer_accountID) {
+        this.customer_accountID = customer_accountID;
+    }
+    
+    
     
     
 }

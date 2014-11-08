@@ -11,44 +11,103 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-         <form id="signform" name="signin" action="SignupServlet" onsubmit="return signcheck(this);" method="post">
-                        <table>
-                            <tr>
-                                <td>First Name</td>
-                                <td><input type='text' id='fname' name='fname' onblur="fnameCheck();" onfocus="backWhite(this);"></td>
-                            </tr>
-                            <tr>
-                                <td>Middle Initial</td>
-                                <td><input type='text' id='mname' name='mname' onblur='mnameCheck()' onfocus='backWhite(this)'></td>
-                            </tr>
-                            <tr>
-                                <td>Last Name</td>
-                                <td><input type='text' id='lname' name='lname' onblur="lnameCheck();" onfocus="backWhite(this);"></td>
-                            </tr>
-                            <tr>
-                                <td>Username</td>
-                                <td><input type='text' id='user' name='uname' onblur="unameCheck();" onfocus="backWhite(this);"></td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td><input type='text' id='email' name='email' onblur="emailCheck();" onfocus="backWhite(this);"></td>
-                            </tr>
-                            <tr>
-                                <td>Password</td>
-                                <td><input type='password' id='pass1' name='pass1' onblur="passCheck();" onfocus="backWhite(this);"></td>
-                            </tr>
-                            <tr>
-                                <td>Verify Password</td>
-                                <td><input type='password' id='pass2' name='pass2' onblur="passCheck();" onfocus="backWhite(this);"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><input type='submit' id='sign' value='Signup'></td>
-                            </tr>
-                        </table>
-                    </form>
+        <form id="signform" name="signin" action="SignupServlet" onsubmit="return signcheck(this);" method="post">
+            <table>
+                <tr>
+                    <td>First Name</td>
+                    <td><input type='text' id='fname' name='fname' onblur="fnameCheck();" onfocus="backWhite(this);"></td>
+                </tr>
+                <tr>
+                    <td>Middle Initial</td>
+                    <td><input type='text' id='mname' name='mname' onblur='mnameCheck()' onfocus='backWhite(this)'></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type='text' id='lname' name='lname' onblur="lnameCheck();" onfocus="backWhite(this);"></td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type='text' id='user' name='uname' onblur="unameCheck();" onfocus="backWhite(this);"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type='text' id='email' name='email' onblur="emailCheck();" onfocus="backWhite(this);"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type='password' id='pass1' name='pass1' onblur="passCheck();" onfocus="backWhite(this);"></td>
+                </tr>
+                <tr>
+                    <td>Verify Password</td>
+                    <td><input type='password' id='pass2' name='pass2' onblur="passCheck();" onfocus="backWhite(this);"></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>Billing Address:</td>
+                </tr>
+                <tr>
+                    <td>Apartment No:</td>
+                    <td><input type='text' id='apartmentnoBA' name='apartmentnoBA'></td>
+                </tr>
+                <tr>
+                    <td>Street:</td>
+                    <td><input type='text' id='streetBA' name='streetBA'></td>
+                </tr>
+                <tr>
+                    <td>Subdivision:</td>
+                    <td><input type='text' id='subdivisionBA' name='subdivisionBA'></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type='text' id='cityBA' name='cityBA'></td>
+                </tr>
+                <tr>      
+                    <td>Country:</td> 
+                    <td><input type='text' id='countryBA' name='countryBA'></td>
+                </tr>
+                <tr>
+                    <td>Postal Code:</td>
+                    <td><input type='text' id='postalcodeBA' name='postalcodeBA'></td>
+                </tr>
+
+
+                <tr>
+                    <td>Delivery Address:</td>
+                </tr>
+                <tr>
+                    <td>Apartment No:</td>
+                    <td><input type='text' id='apartmentnoDA' name='apartmentnoDA'></td>
+                </tr>
+                <tr>
+                    <td>Street:</td>
+                    <td><input type='text' id='streetDA' name='streetDA'></td>
+                </tr>
+                <tr>
+                    <td>Subdivision:</td>
+                    <td><input type='text' id='subdivisionDA' name='subdivisionDA'></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type='text' id='cityDA' name='cityDA'></td>
+                </tr>
+                <tr>      
+                    <td>Country:</td> 
+                    <td><input type='text' id='countryDA' name='countryDA'></td>
+                </tr>
+                <tr>
+                    <td>Postal Code:</td>
+                    <td><input type='text' id='postalcodeDA' name='postalcodeDA'></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type='submit' id='sign' value='Signup'></td>
+                </tr>
+            </table>
+        </form>
         <script>
-       
+
             function logcheck() {
                 var user = usernameCheck();
                 var pass = passwordCheck();
@@ -87,7 +146,7 @@ and open the template in the editor.
                     return true;
                 }
             }
-            
+
             function mnameCheck() {
                 var middle = document.forms["signin"]["mname"].value;
                 if (middle == "" || middle == null || !(/^[A-z ]+$/.test(middle))) {
