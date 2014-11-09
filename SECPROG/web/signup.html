@@ -9,6 +9,8 @@ and open the template in the editor.
         <title>Signup</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-2.1.0.min.js" type="text/javascript"></script>
+        <script src="signupcheck.js" type="text/javascript"></script>
     </head>
     <body>
         <form id="signform" name="signin" action="SignupServlet" onsubmit="return signcheck(this);" method="post">
@@ -48,56 +50,55 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>Apartment No:</td>
-                    <td><input type='text' id='apartmentnoBA' name='apartmentnoBA'></td>
+                    <td><input type='text' id='apartmentnoBA' name='apartmentnoBA' onblur="apartmentnoBACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>Street:</td>
-                    <td><input type='text' id='streetBA' name='streetBA'></td>
+                    <td><input type='text' id='streetBA' name='streetBA' onblur="streetBACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>Subdivision:</td>
-                    <td><input type='text' id='subdivisionBA' name='subdivisionBA'></td>
+                    <td><input type='text' id='subdivisionBA' name='subdivisionBA' onblur="subdivisionBACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>City:</td>
-                    <td><input type='text' id='cityBA' name='cityBA'></td>
+                    <td><input type='text' id='cityBA' name='cityBA' onblur="cityBACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>      
                     <td>Country:</td> 
-                    <td><input type='text' id='countryBA' name='countryBA'></td>
+                    <td><input type='text' id='countryBA' name='countryBA' onblur="countryBACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>Postal Code:</td>
-                    <td><input type='text' id='postalcodeBA' name='postalcodeBA'></td>
+                    <td><input type='text' id='postalcodeBA' name='postalcodeBA' onblur="postalcodeBACheck()" onfocus="backWhite()"></td>
                 </tr>
-
 
                 <tr>
                     <td>Delivery Address:</td>
                 </tr>
                 <tr>
                     <td>Apartment No:</td>
-                    <td><input type='text' id='apartmentnoDA' name='apartmentnoDA'></td>
+                    <td><input type='text' id='apartmentnoDA' name='apartmentnoDA' onblur="apartmentnoDACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>Street:</td>
-                    <td><input type='text' id='streetDA' name='streetDA'></td>
+                    <td><input type='text' id='streetDA' name='streetDA' onblur="streetDACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>Subdivision:</td>
-                    <td><input type='text' id='subdivisionDA' name='subdivisionDA'></td>
+                    <td><input type='text' id='subdivisionDA' name='subdivisionDA' onblur="subdivisionDACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>City:</td>
-                    <td><input type='text' id='cityDA' name='cityDA'></td>
+                    <td><input type='text' id='cityDA' name='cityDA' onblur="cityDACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>      
                     <td>Country:</td> 
-                    <td><input type='text' id='countryDA' name='countryDA'></td>
+                    <td><input type='text' id='countryDA' name='countryDA' onblur="countryDACheck()" onfocus="backWhite()"></td>
                 </tr>
                 <tr>
                     <td>Postal Code:</td>
-                    <td><input type='text' id='postalcodeDA' name='postalcodeDA'></td>
+                    <td><input type='text' id='postalcodeDA' name='postalcodeDA' onblur="postalcodeDACheck()" onfocus="backWhite()"></td>
                 </tr>
 
                 <tr>
@@ -106,116 +107,7 @@ and open the template in the editor.
                 </tr>
             </table>
         </form>
-        <script>
 
-            function logcheck() {
-                var user = usernameCheck();
-                var pass = passwordCheck();
-                if (user == false || pass == false) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            }
-
-            function signcheck() {
-                var first = fnameCheck();
-                var middle = mnameCheck();
-                var last = lnameCheck();
-                var user = unameCheck();
-                var email = emailCheck();
-                var pass = passCheck();
-
-                if (first == false || last == false || middle == false || user == false || email == false || pass == false) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            }
-
-            function fnameCheck() {
-                var first = document.forms["signin"]["fname"].value;
-                if (first == "" || first == null || !(/^[A-z ]+$/.test(first))) {
-                    document.forms["signin"]["fname"].style.backgroundColor = "pink";
-                    return false;
-                }
-                else {
-                    document.forms["signin"]["fname"].style.backgroundColor = "white";
-                    return true;
-                }
-            }
-
-            function mnameCheck() {
-                var middle = document.forms["signin"]["mname"].value;
-                if (middle == "" || middle == null || !(/^[A-z ]+$/.test(middle))) {
-                    document.forms["signin"]["mname"].style.backgroundColor = "pink";
-                    return false;
-                }
-                else {
-                    document.forms["signin"]["mname"].style.backgroundColor = "white";
-                    return true;
-                }
-            }
-
-            function lnameCheck() {
-                var last = document.forms["signin"]["lname"].value;
-                if (last == "" || last == null || !(/^[A-z ]+$/.test(last))) {
-                    document.forms["signin"]["lname"].style.backgroundColor = "pink";
-                    return false;
-                }
-                else {
-                    document.forms["signin"]["lname"].style.backgroundColor = "white";
-                    return true;
-                }
-            }
-
-            function unameCheck() {
-                var user = document.forms["signin"]["uname"].value;
-                if (user == "" || user == null) {
-                    document.forms["signin"]["uname"].style.backgroundColor = "pink";
-                    return false;
-                }
-                else {
-                    document.forms["signin"]["uname"].style.backgroundColor = "white";
-                    return true;
-                }
-            }
-
-            function emailCheck() {
-                var email = document.forms["signin"]["email"].value;
-                var atpos = email.indexOf("@");
-                var dotpos = email.lastIndexOf(".");
-                if (email == "" || email == null || atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-                    document.forms["signin"]["email"].style.backgroundColor = "pink";
-                    return false;
-                }
-                else {
-                    document.forms["signin"]["email"].style.backgroundColor = "white";
-                    return true;
-                }
-            }
-
-            function passCheck() {
-                var pass1 = document.forms["signin"]["pass1"].value;
-                var pass2 = document.forms["signin"]["pass2"].value;
-                if (pass1 == "" || pass1 == null || pass2 == "" || pass2 == null || pass1 != pass2) {
-                    document.forms["signin"]["pass1"].style.backgroundColor = "pink";
-                    document.forms["signin"]["pass2"].style.backgroundColor = "pink";
-                    return false;
-                }
-                else {
-                    document.forms["signin"]["pass1"].style.backgroundColor = "white";
-                    document.forms["signin"]["pass2"].style.backgroundColor = "white";
-                    return true;
-                }
-            }
-
-            function backWhite(x) {
-                x.style.background = "white";
-            }
-        </script>
 
     </body>
 </html>

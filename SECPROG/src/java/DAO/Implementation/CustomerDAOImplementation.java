@@ -7,11 +7,13 @@
 package DAO.Implementation;
 
 import Beans.CustomerBean;
+import Beans.ProductBean;
 import DAO.Interface.CustomerDAOInterface;
 import DBConnection.Connector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +29,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
             Connector c = new Connector();
             Connection connection = c.getConnection();
             String query = "insert into customer (apartmentnoBA, streetBA, subdivisionBA, cityBA, postalcodeBA, countryBA,"
-                    + "apartmentnoDA, streetDA, subdivisionDA, cityDA, postalcodeDA, customer_accountID) "
+                    + " apartmentnoDA, streetDA, subdivisionDA, cityDA, postalcodeDA, countryDA, customer_accountID) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, customerBean.getApartmentNoBA());
@@ -53,4 +55,27 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
         }
         return false;
     }
+
+    @Override
+    public boolean editCustomer(CustomerBean customerBean) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeCustomer(int customerID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CustomerBean getCustomerById(int customerID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<CustomerBean> getAllCustomers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
 }

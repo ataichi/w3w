@@ -26,6 +26,12 @@ public class SignupServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
+            AccountBean account = new AccountBean();
+            CustomerBean customer = new CustomerBean();
+            AccountDAOInterface userdao = new AccountDAOImplementation();
+            CustomerDAOInterface customerdao = new CustomerDAOImplementation();
+            boolean checkAccount, checkCustomer;
+            boolean locked=false;
 
             String firstname = request.getParameter("fname");
             String lastname = request.getParameter("lname");
@@ -34,7 +40,6 @@ public class SignupServlet extends HttpServlet {
             String username = request.getParameter("uname");
             String pass1 = request.getParameter("pass1");
 
-            AccountBean account = new AccountBean();
             account.setFirstName(firstname);
             account.setLastName(lastname);
             account.setMiddleInitial(mInitial);
@@ -42,12 +47,9 @@ public class SignupServlet extends HttpServlet {
             account.setEmailAdd(email);
             account.setUsername(username);
             account.setAccountType("customer");
+            account.setLocked(locked);
             
-            out.println("here");
-            boolean check;
-            AccountDAOInterface userdao = new AccountDAOImplementation();
-            check = userdao.addAccount(account);
-            out.println(check);
+            checkAccount = userdao.addAccount(account);
             
             int apartmentnoBA = Integer.valueOf(request.getParameter("apartmentnoBA"));
             String streetBA = request.getParameter("streetBA");
@@ -63,19 +65,30 @@ public class SignupServlet extends HttpServlet {
             int postalcodeDA = Integer.valueOf(request.getParameter("postalcodeDA"));
             String countryDA = request.getParameter("countryDA");
             
-            int customer_accountID = userdao.getUser(username).getAccountID();            
-            CustomerBean customer = new CustomerBean();
-            CustomerDAOInterface customerdao = new CustomerDAOImplementation();
-            boolean customer_check;
+            int customer_accountID = userdao.getUserByUsername(username).getAccountID();
             
+            customer.setApartmentNoBA(apartmentnoBA);
+            customer.setApartmentNoDA(apartmentnoDA);
+            customer.setCityBA(cityBA);
+            customer.setCityDA(cityDA);
+            customer.setCountryBA(countryBA);
+            customer.setCountryDA(countryDA);
+            customer.setCustomer_accountID(customer_accountID);
+            customer.setPostalCodeBA(postalcodeBA);
+            customer.setPostalCodeDA(postalcodeDA);
+            customer.setStreetBA(streetBA);
+            customer.setStreetDA(streetDA);
+            customer.setSubdivisionBA(subdivisionBA);
+            customer.setSubdivisionDA(subdivisionDA);
             
-            if(check){
+            checkCustomer = customerdao.addCustomer(customer);
+            
+            if(checkAccount && checkCustomer){
                 response.sendRedirect("home.html");
             }
             else{
-                response.sendRedirect("fail.jsp");
+                response.sendRedirect("loginfail.jsp");
             }
-            
         } finally {
             out.close();
         }

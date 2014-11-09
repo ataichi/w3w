@@ -9,7 +9,16 @@ public class AccountBean {
     protected String username;
     protected String password;
     protected String emailAdd;
+    protected boolean locked;
 
+    public void setLocked(boolean locked){
+        this.locked=locked;
+    }
+    
+    public boolean getLocked(){
+        return locked;
+    }
+    
     public int getAccountID() {
         return accountID;
     }
