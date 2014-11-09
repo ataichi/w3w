@@ -33,11 +33,11 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("admin.jsp");
             }
             else*/ 
-            if (username.equals(account.getUsername()) && password.equals(account.getPassword())) {
+            if (accountdao.doesUserExist(username, password)) {
                 session.setAttribute("homeuser", account);
                 response.sendRedirect("customerHOME.jsp");
             } else {
-                response.sendRedirect("home.html");
+                response.sendRedirect("loginfail.jsp");
             }
 
         } finally {

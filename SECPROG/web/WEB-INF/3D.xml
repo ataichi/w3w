@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beans>
+
+	<category title="Animals">
+		<xmlPath src="animals.xml"/>
+		<image src="/Images/login.jpg"/>
+		<description><![CDATA[Login now to start browsing foobar]]> </description>
+	</category>	
+	
+</beans>
