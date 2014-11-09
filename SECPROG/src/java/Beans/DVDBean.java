@@ -4,10 +4,11 @@ package Beans;
 import java.util.ArrayList;
 
 public class DVDBean {
-    protected int dvdID;
-    protected String director;
-    protected String productionCompany;
-    protected ArrayList<String> mainActors;
+    private int dvdID;
+    private String director;
+    private String productionCompany;
+    private String mainActors;
+    private int dvd_productID;
 
     public String getDirector() {
         return director;
@@ -25,11 +26,11 @@ public class DVDBean {
         this.productionCompany = productionCompany;
     }
 
-    public ArrayList<String> getMainActors() {
+    public String getMainActors() {
         return mainActors;
     }
 
-    public void setMainActors(ArrayList<String> mainActors) {
+    public void setMainActors(String mainActors) {
         this.mainActors = mainActors;
     }
 
@@ -39,5 +40,13 @@ public class DVDBean {
 
     public void setDvdID(int dvdID) {
         this.dvdID = dvdID;
+    }
+
+    public int getDvd_productID() {
+        return dvd_productID;
+    }
+    
+    public void setDvd_productID(int dvd_productID) {
+        this.dvd_productID = dvd_productID;
     }
 }

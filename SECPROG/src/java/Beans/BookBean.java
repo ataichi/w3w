@@ -4,10 +4,11 @@ package Beans;
 import java.sql.Date;
 
 public class BookBean {
-    protected int bookID;
-    protected String author;
-    protected String publisher;
-    protected Date datePublished;
+    private int bookID;
+    private String author;
+    private String publisher;
+    private Date datePublished;
+    private int book_productID;
 
     public String getAuthor() {
         return author;
@@ -39,6 +40,20 @@ public class BookBean {
 
     public void setBookID(int bookID) {
         this.bookID = bookID;
+    }
+
+    /**
+     * @return the book_productID
+     */
+    public int getBook_productID() {
+        return book_productID;
+    }
+
+    /**
+     * @param book_productID the book_productID to set
+     */
+    public void setBook_productID(int book_productID) {
+        this.book_productID = book_productID;
     }
     
 }
