@@ -7,6 +7,8 @@
 package DAO.Interface;
 
 import Beans.CustomerBean;
+import Beans.ProductBean;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,5 +16,17 @@ import Beans.CustomerBean;
  */
 public interface CustomerDAOInterface {
        public boolean addCustomer(CustomerBean customerBean);
+       public boolean editCustomer(CustomerBean customerBean);
+       public boolean removeCustomer(CustomerBean customerBean);
+       public boolean viewCustomer(CustomerBean customerBean);
+       public boolean addToCart (ProductBean product);
+       public boolean removeFromCart (ProductBean product);
+       public ArrayList<ProductBean> viewCart();
+       public boolean purchase();
+       public ProductBean viewProduct (int ProductID);
+       public ProductBean searchProduct (int ProductID);
+       
+       
+       
  
 }
