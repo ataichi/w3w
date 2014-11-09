@@ -2,9 +2,10 @@
 package Beans;
 
 public class AudioCDBean {
-    protected int audiocdID;
-    protected String artist;
-    protected String recordCompany;
+    private int audiocdID;
+    private String artist;
+    private String recordCompany;
+    private int audiocd_productID;
 
     public String getArtist() {
         return artist;
@@ -28,5 +29,13 @@ public class AudioCDBean {
 
     public void setAudiocdID(int audiocdID) {
         this.audiocdID = audiocdID;
+    }
+
+    public int getAudiocd_productID() {
+        return audiocd_productID;
+    }
+
+    public void setAudiocd_productID(int audiocd_productID) {
+        this.audiocd_productID = audiocd_productID;
     }
 }

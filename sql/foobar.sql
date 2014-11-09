@@ -1,4 +1,3 @@
-
 CREATE DATABASE  IF NOT EXISTS `foobar` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `foobar`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
@@ -36,7 +35,7 @@ CREATE TABLE `account` (
   `accounttype` varchar(45) NOT NULL,
   `locked` BINARY NOT NULL,
   PRIMARY KEY (`accountID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,10 +203,15 @@ CREATE TABLE `customer` (
   `countryDA` varchar(45) NOT NULL,
   PRIMARY KEY (`customerID`),
   KEY `customer_accountID_idx` (`customer_accountID`),
+<<<<<<< HEAD
   CONSTRAINT `customer_accountID` FOREIGN KEY (`customer_accountID`) REFERENCES `account` (`accountID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   KEY `customer_creditCardID_idx` (`customer_creditCardID`),
   CONSTRAINT `customer_creditCardID` FOREIGN KEY (`customer_creditCardID`) REFERENCES `creditcard` (`creditcardID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+  CONSTRAINT `customer_accountID` FOREIGN KEY (`customer_accountID`) REFERENCES `account` (`accountID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+>>>>>>> a482803789742c991f7095c326cef9c5d10e467b
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,14 +287,14 @@ DROP TABLE IF EXISTS `magazine`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `magazine` (
   `magazineID` int(11) NOT NULL AUTO_INCREMENT,
-  `magazine_accountID` int(11) NOT NULL,
+  `magazine_productID` int(11) NOT NULL,
   `volumeNo` int(11) NOT NULL,
   `publisher` varchar(45) NOT NULL,
   `datePublished` date NOT NULL,
   `issueNo` int(11) NOT NULL,
   PRIMARY KEY (`magazineID`),
-  KEY `magazine_accountID_idx` (`magazine_accountID`),
-  CONSTRAINT `magazine_accountID` FOREIGN KEY (`magazine_accountID`) REFERENCES `account` (`accountID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `magazine_accountID_idx` (`magazine_productID`),
+  CONSTRAINT `magazine_accountID` FOREIGN KEY (`magazine_productID`) REFERENCES `account` (`accountID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -373,8 +377,8 @@ CREATE TABLE `productorder` (
   PRIMARY KEY (`productorderID`),
   KEY `productorder_shoppingcartID_idx` (`productorder_shoppingcartID`),
   KEY `productorder_productID_idx` (`productorder_productID`),
-  CONSTRAINT `productorder_shoppingcartID` FOREIGN KEY (`productorder_shoppingcartID`) REFERENCES `shoppingcart` (`shoppingcartID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `productorder_productID` FOREIGN KEY (`productorder_productID`) REFERENCES `product` (`productID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `productorder_productID` FOREIGN KEY (`productorder_productID`) REFERENCES `product` (`productID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `productorder_shoppingcartID` FOREIGN KEY (`productorder_shoppingcartID`) REFERENCES `shoppingcart` (`shoppingcartID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -403,8 +407,8 @@ CREATE TABLE `shoppingcart` (
   PRIMARY KEY (`shoppingcartID`),
   KEY `shoppingcart_customerID_idx` (`shoppingcart_customerID`),
   KEY `shoppingcart_creditcardID_idx` (`shoppingcart_creditcardID`),
-  CONSTRAINT `shoppingcart_customerID` FOREIGN KEY (`shoppingcart_customerID`) REFERENCES `customer` (`customerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `shoppingcart_creditcardID` FOREIGN KEY (`shoppingcart_creditcardID`) REFERENCES `creditcard` (`creditcardID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `shoppingcart_creditcardID` FOREIGN KEY (`shoppingcart_creditcardID`) REFERENCES `creditcard` (`creditcardID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `shoppingcart_customerID` FOREIGN KEY (`shoppingcart_customerID`) REFERENCES `customer` (`customerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -426,4 +430,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-05  0:36:44
+-- Dump completed on 2014-11-09 23:55:19
