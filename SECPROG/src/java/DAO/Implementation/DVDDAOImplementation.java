@@ -85,12 +85,41 @@ public class DVDDAOImplementation implements DVDDAOInterface {
 
     @Override
     public boolean editDVD(DVDBean DVD) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "update dvd set director = ?, actor = ?, productCompany = ? where dvdID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, DVD.getDirector());
+            ps.setString(2, DVD.getMainActors());
+            ps.setString(3, DVD.getProductionCompany());
+            ps.executeUpdate();
+            
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return false;
     }
 
     @Override
     public boolean deleteDVD(DVDBean DVD) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "delete from dvd where dvdID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, DVD.getDvdID());
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+            
+    
     }
     
 }

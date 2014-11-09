@@ -25,13 +25,14 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
     int magazineID, magazine_accountID, volumeNo, issueNo;
     String publisher;
     java.util.Date datePublished = new java.util.Date();
+    String query;
     
     @Override
     public MagazineBean getMagazine(int ID) {
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            String query = "select * from magazine where magazineID = ?";
+            query = "select * from magazine where magazineID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, ID);
             
@@ -67,10 +68,16 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            String query = "insert into magazine (magazineID, )";
+            query = "insert into magazine (magazine_productID, volumeNo, issueNo, publisher, datePublished) values (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
-            
-            
+            ps.setInt(1, magazine.getMagazine_productID());
+            ps.setInt(2, magazine.getVolumeNo());
+            ps.setInt(3, magazine.getIssueNo());
+            ps.setString(4, magazine.getPublisher());
+            ps.setDate(5, magazine.getDatePublished());
+            ps.executeUpdate();
+            connection.close();
+            return true;
         
         
         } catch (SQLException ex) {
@@ -81,12 +88,43 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
 
     @Override
     public boolean editMagazine(MagazineBean magazine) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "update magazine set volumeNo = ?, issueNo = ?, publisher = ? datePublished = ? where magazineID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, magazine.getVolumeNo());
+            ps.setInt(2, magazine.getIssueNo());
+            ps.setString(3, magazine.getPublisher());
+            ps.setDate(4, magazine.getDatePublished());
+            ps.setInt(5, magazine.getMagazineID());
+            ps.executeUpdate();
+            
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return false;
     }
 
     @Override
     public boolean deleteMagazine(MagazineBean magazine) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "delete from magazine where magazineID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, magazine.getMagazineID());
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    
     }
     
 }
