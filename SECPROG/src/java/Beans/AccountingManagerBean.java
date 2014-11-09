@@ -10,15 +10,24 @@ package Beans;
  * @author jao
  */
 public class AccountingManagerBean {
- 
-    protected int id;
 
-    public int getId() {
-        return id;
+    protected int accountingManagerID;
+    protected int accountingManager_accountID;
+
+    public int getAccountingManagerID() {
+        return accountingManagerID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getAccountingManager_accountID() {
+        return accountingManager_accountID;
     }
-    
+
+    public void setAccountingManagerID(int accountingManagerID) {
+        this.accountingManagerID = accountingManagerID;
+    }
+
+    public void setAccountingManager_accountID(int accountingManager_accountID) {
+        this.accountingManager_accountID = accountingManager_accountID;
+    }
+
 }

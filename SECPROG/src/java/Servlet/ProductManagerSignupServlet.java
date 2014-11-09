@@ -6,11 +6,10 @@
 package Servlet;
 
 import Beans.AccountBean;
-import Beans.AccountingManagerBean;
+import Beans.ProductManagerBean;
 import DAO.Implementation.AccountDAOImplementation;
-import DAO.Implementation.AccountingManagerDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
-import DAO.Interface.AccountingManagerDAOInterface;
+import DAO.Interface.ProductManagerDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -24,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Giodee
  */
-@WebServlet(name = "AccountingSignupServlet", urlPatterns = {"/AccountingSignupServlet"})
-public class AccountingSignupServlet extends HttpServlet {
+@WebServlet(name = "ProductManagerSignupServlet", urlPatterns = {"/ProductManagerSignupServlet"})
+public class ProductManagerSignupServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,44 +41,13 @@ public class AccountingSignupServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
+            
             HttpSession session = request.getSession();
             AccountBean account = new AccountBean();
-            AccountingManagerBean accountingManager = new AccountingManagerBean();
+            ProductManagerBean productManager = new ProductManagerBean();
             AccountDAOInterface userdao = new AccountDAOImplementation();
-            AccountingManagerDAOInterface amdao = new AccountingManagerDAOImplementation();
-
-            String firstname = request.getParameter("fname");
-            String lastname = request.getParameter("lname");
-            String mInitial = request.getParameter("mname");
-            String email = request.getParameter("email");
-            String username = request.getParameter("uname");
-            String pass1 = request.getParameter("pass1");
-            boolean checkAccount, checkAccountingManager;
-            boolean locked=false;
+   //         ProductManagerDAOInterface pmdao = new ProductManagerDAOImplementation();
             
-            account.setFirstName(firstname);
-            account.setLastName(lastname);
-            account.setMiddleInitial(mInitial);
-            account.setPassword(pass1);
-            account.setEmailAdd(email);
-            account.setUsername(username);
-            account.setAccountType("accounting manager");
-            account.setLocked(locked);
-            
-            checkAccount = userdao.addAccount(account);
-            
-            int accountingmanager_accountID = userdao.getUserByUsername(username).getAccountID();
-            
-            accountingManager.setAccountingManager_accountID(accountingmanager_accountID);
-            checkAccountingManager = amdao.addAccountingManager(accountingManager);
-            
-            if(checkAccount && checkAccountingManager){
-                response.sendRedirect("adminHOME.jsp");
-                //successful
-            }else{
-                response.sendRedirect("signupfail.jsp");
-            }
-
         } finally {
             out.close();
         }
