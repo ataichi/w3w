@@ -27,7 +27,7 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
             Connector c = new Connector();
             Connection connection = c.getConnection();
             String query = "insert into customer (apartmentnoBA, streetBA, subdivisionBA, cityBA, postalcodeBA, countryBA,"
-                    + "apartmentnoDA, streetDA, subdivisionDA, cityDA, postalcodeDA, customer_accountID) "
+                    + " apartmentnoDA, streetDA, subdivisionDA, cityDA, postalcodeDA, countryDA, customer_accountID) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, customerBean.getApartmentNoBA());

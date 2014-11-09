@@ -16,11 +16,8 @@ public class AccountDAOImplementation implements AccountDAOInterface {
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    Connector connector = new Connector();
-    Connection connection = connector.getConnection();
 
     public boolean addAccount(AccountBean accountBean) {
-        int rowsAffected = 0;
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
@@ -33,56 +30,47 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             ps.setString(5, accountBean.getPassword());
             ps.setString(6, accountBean.getEmailAdd());
             ps.setString(7, accountBean.getAccountType());
-            rowsAffected = ps.executeUpdate();            
+            ps.executeUpdate();
+            connection.close();
+            return true;
 
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-            try {
-                connection.close();
-            } catch (SQLException ex1) {
-                Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rowsAffected == 1;
+        return false;
     }
 
     public boolean updateAccount(AccountBean accountBean) {
-        int rowsAffected = 0;
-        int index = 1;
-        Connector connector = new Connector();
-        Connection connection = connector.getConnection();
 
         String query = "UPDATE account SET firstName=?, lastName=?, middleInitial=?, username=?, password=?, emailAdd=?, accounttype=? WHERE username=?";
         try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(index++, accountBean.getFirstName());
-            preparedStatement.setString(index++, accountBean.getLastName());
-            preparedStatement.setString(index++, accountBean.getMiddleInitial());
-            preparedStatement.setString(index++, accountBean.getUsername());
-            preparedStatement.setString(index++, accountBean.getPassword());
-            preparedStatement.setString(index++, accountBean.getEmailAdd());
-            preparedStatement.setString(index++, accountBean.getAccountType());
-            rowsAffected = preparedStatement.executeUpdate();
+            preparedStatement.setString(1, accountBean.getFirstName());
+            preparedStatement.setString(2, accountBean.getLastName());
+            preparedStatement.setString(3, accountBean.getMiddleInitial());
+            preparedStatement.setString(4, accountBean.getUsername());
+            preparedStatement.setString(5, accountBean.getPassword());
+            preparedStatement.setString(6, accountBean.getEmailAdd());
+            preparedStatement.setString(7, accountBean.getAccountType());
+            preparedStatement.executeUpdate();
+            connection.close();
+            return true;
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return rowsAffected == 1;
+        return false;
     }
 
     @Override
     public AccountBean getUser(String username) {
-        String query = "select * from account where username = ?";
 
         try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "select * from account where username = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, username);
 
@@ -113,8 +101,10 @@ public class AccountDAOImplementation implements AccountDAOInterface {
                 bean.setUsername(uname);
 
                 System.out.println("hssere");
-                return bean;
+                
             }
+            connection.close();
+            return bean;
           
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,12 +116,13 @@ public class AccountDAOImplementation implements AccountDAOInterface {
     @Override
     public boolean doesUserExist(String username, String password) {
         boolean result = false;
-        String query = "SELECT * FROM account WHERE username = ? AND password = ?";
-        int index = 1; //use index nabasa ko sa ppt hehe
         try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "SELECT * FROM account WHERE username = ? AND password = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(index++, username);
-            ps.setString(index++, password);
+            ps.setString(1, username);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 result = true;
@@ -149,6 +140,8 @@ public class AccountDAOImplementation implements AccountDAOInterface {
         String query = "SELECT * FROM admin WHERE adminUsername = ? AND adminPassword = ?";
         int index = 1;
         try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(index++, username);
             ps.setString(index++, password);
