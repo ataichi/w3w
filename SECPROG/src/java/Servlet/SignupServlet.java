@@ -65,8 +65,6 @@ public class SignupServlet extends HttpServlet {
             
             int customer_accountID = userdao.getUser(username).getAccountID();
             
-            out.println(customer_accountID);
-            
             customer.setApartmentNoBA(apartmentnoBA);
             customer.setApartmentNoDA(apartmentnoDA);
             customer.setCityBA(cityBA);
@@ -80,7 +78,6 @@ public class SignupServlet extends HttpServlet {
             customer.setStreetDA(streetDA);
             customer.setSubdivisionBA(subdivisionBA);
             customer.setSubdivisionDA(subdivisionDA);
-            customerdao.addCustomer(customer);
             
             checkCustomer = customerdao.addCustomer(customer);
             
