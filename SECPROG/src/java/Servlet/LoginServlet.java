@@ -34,8 +34,8 @@ public class LoginServlet extends HttpServlet {
             }
             else*/ 
             if (username.equals(account.getUsername()) && password.equals(account.getPassword())) {
-        //        session.setAttribute("user", account);
-                response.sendRedirect("shop.jsp");
+                session.setAttribute("homeuser", account);
+                response.sendRedirect("customerHOME.jsp");
             } else {
                 response.sendRedirect("home.html");
             }

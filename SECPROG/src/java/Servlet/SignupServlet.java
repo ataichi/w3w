@@ -71,14 +71,14 @@ public class SignupServlet extends HttpServlet {
             CustomerDAOInterface customerdao = new CustomerDAOImplementation();
             boolean customer_check;
             
-            /*
-            if(userdao.addAccount(account)){
+            
+            if(check){
                 response.sendRedirect("home.html");
             }
             else{
                 response.sendRedirect("fail.jsp");
             }
-            */
+            
         } finally {
             out.close();
         }

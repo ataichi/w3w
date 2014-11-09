@@ -1,4 +1,6 @@
 
+<%@page import="Beans.AccountBean"%>
+<%@page import="Beans.CustomerBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,6 +9,7 @@
         <title>Customer Home Page</title>
     </head>
     <body>
-        <h1>Hello Customer!</h1>
+        <% AccountBean homeuser = (AccountBean) session.getAttribute("homeuser"); %>
+        <h1>Hello <% out.print(homeuser.getUsername());%> !</h1>
     </body>
 </html>
