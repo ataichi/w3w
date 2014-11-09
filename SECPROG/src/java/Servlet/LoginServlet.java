@@ -29,19 +29,21 @@ public class LoginServlet extends HttpServlet {
             AccountDAOInterface accountdao = new AccountDAOImplementation();
             account = accountdao.getUserByUsername(username);
 
-            if (accountdao.doesUserExist(username, password) && account.getAccountType() == "customer") {
+            if (accountdao.doesUserExist(username, password) && "customer".equals(account.getAccountType())) {
                 session.setAttribute("homeuser", account);
                 response.sendRedirect("customerHOME.jsp");
-            }else if(accountdao.doesUserExist(username, password) && account.getAccountType() == "admin"){
+            }else if(accountdao.doesUserExist(username, password) && "admin".equals(account.getAccountType())){
                 session.setAttribute("homeadmin", account);
                 response.sendRedirect("adminHOME.jsp");
-            }else if(accountdao.doesUserExist(username, password) && account.getAccountType() == "product manager"){
+            }else if(accountdao.doesUserExist(username, password) && "product manager".equals(account.getAccountType())){
                 session.setAttribute("homeproduct", account);
                 response.sendRedirect("productmanagerHOME.jsp");
-            }else if(accountdao.doesUserExist(username, password) && account.getAccountType() == "accounting manager"){
+            }else if(accountdao.doesUserExist(username, password) && "accounting manager".equals(account.getAccountType())){
                 session.setAttribute("homeaccounting", account);
                 response.sendRedirect("accountingmanagerHOME.jsp");
             }else {
+                out.println(accountdao.doesUserExist(username, password));
+           out.println(account.getAccountType());     
                 response.sendRedirect("loginfail.jsp");
             }
 

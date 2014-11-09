@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a href="signup_productmanager.html">Add Product Manager</a>
+        <br>
+        <a href="signup_accountingmanager.html">Add Accounting Manager</a>
     </body>
 </html>
