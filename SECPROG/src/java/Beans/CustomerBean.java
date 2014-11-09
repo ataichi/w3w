@@ -2,20 +2,20 @@
 package Beans;
 
 public class CustomerBean {
-    private int apartmentNoBA;
-    private String streetBA;
-    private String subdivisionBA;
-    private String cityBA;
-    private int postalCodeBA;
-    private String countryBA;
-    private int apartmentNoDA;
-    private String streetDA;
-    private String subdivisionDA;
-    private String cityDA;
-    private int postalCodeDA;
-    private String countryDA;
-    private int customer_accountID;
-    private int customerID;
+    protected int apartmentNoBA;
+    protected String streetBA;
+    protected String subdivisionBA;
+    protected String cityBA;
+    protected int postalCodeBA;
+    protected String countryBA;
+    protected int apartmentNoDA;
+    protected String streetDA;
+    protected String subdivisionDA;
+    protected String cityDA;
+    protected int postalCodeDA;
+    protected String countryDA;
+    protected int customer_accountID;
+    protected int customerID;
 
     public int getCustomerID() {
         return customerID;

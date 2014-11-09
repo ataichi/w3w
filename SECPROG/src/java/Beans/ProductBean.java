@@ -2,14 +2,14 @@
 package Beans;
 
 public class ProductBean {
-    private int productID;
-    private String type;
-    private String title;
-    private double price;
-    private String summary;
-    private String genre;
-    private int year;
-    private int numberStocks;
+    protected int productID;
+    protected String type;
+    protected String title;
+    protected double price;
+    protected String summary;
+    protected String genre;
+    protected int year;
+    protected int numberStocks;
 
     public int getProductID() {
         return productID;

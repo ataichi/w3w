@@ -4,10 +4,10 @@ package Beans;
 import java.sql.Date;
 
 public class CreditCardBean {
-    private String cardname;
-    private String cardno;
-    private String cardtype;
-    private Date cardexpdate;
+    protected String cardname;
+    protected String cardno;
+    protected String cardtype;
+    protected Date cardexpdate;
 
     public String getCardname() {
         return cardname;

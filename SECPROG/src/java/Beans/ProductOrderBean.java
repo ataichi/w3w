@@ -2,9 +2,9 @@
 package Beans;
 
 public class ProductOrderBean {
-    private int quantity;
-    private double price;
-    private int productID;
+    protected int quantity;
+    protected double price;
+    protected int productID;
 
     public int getQuantity() {
         return quantity;

@@ -6,7 +6,6 @@ import DAO.Implementation.AccountDAOImplementation;
 import DAO.Implementation.CustomerDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
 import DAO.Interface.CustomerDAOInterface;
-import DAOInterface.AccountInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class SignupServlet extends HttpServlet {
             
             out.println("here");
             boolean check;
-            AccountDAOImplementation userdao = new AccountDAOImplementation();
+            AccountDAOInterface userdao = new AccountDAOImplementation();
             check = userdao.addAccount(account);
             out.println(check);
             
@@ -64,10 +63,8 @@ public class SignupServlet extends HttpServlet {
             int postalcodeDA = Integer.valueOf(request.getParameter("postalcodeDA"));
             String countryDA = request.getParameter("countryDA");
             
-            int customer_accountID = userdao.getUser(username).getAccountID();
-            
+            int customer_accountID = userdao.getUser(username).getAccountID();            
             CustomerBean customer = new CustomerBean();
-            
             CustomerDAOInterface customerdao = new CustomerDAOImplementation();
             boolean customer_check;
             

@@ -2,7 +2,7 @@
 package Beans;
 
 public class ProductManagerBean {
-    private String prodType;
+    protected String prodType;
 
     public String getProdType() {
         return prodType;

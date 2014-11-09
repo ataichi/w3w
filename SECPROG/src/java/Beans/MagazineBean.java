@@ -4,11 +4,11 @@ package Beans;
 import java.sql.Date;
 
 public class MagazineBean {
-    private int magazineID;
-    private int volumeNo;
-    private String publisher;
-    private Date datePublished;
-    private int issueNo;
+    protected int magazineID;
+    protected int volumeNo;
+    protected String publisher;
+    protected Date datePublished;
+    protected int issueNo;
 
     public int getVolumeNo() {
         return volumeNo;

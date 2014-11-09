@@ -4,10 +4,10 @@ package Beans;
 import java.sql.Date;
 
 public class ShoppingCartBean {
-    private int cartID;
-    private CustomerBean customer;
-    private double total;
-    private Date orderDate;
+    protected int cartID;
+    protected CustomerBean customer;
+    protected double total;
+    protected Date orderDate;
 
     public int getCartID() {
         return cartID;

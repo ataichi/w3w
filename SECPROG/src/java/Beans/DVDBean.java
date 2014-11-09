@@ -4,10 +4,10 @@ package Beans;
 import java.util.ArrayList;
 
 public class DVDBean {
-    private int dvdID;
-    private String director;
-    private String productionCompany;
-    private ArrayList<String> mainActors;
+    protected int dvdID;
+    protected String director;
+    protected String productionCompany;
+    protected ArrayList<String> mainActors;
 
     public String getDirector() {
         return director;

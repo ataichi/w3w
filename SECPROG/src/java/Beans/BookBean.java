@@ -4,10 +4,10 @@ package Beans;
 import java.sql.Date;
 
 public class BookBean {
-    private int bookID;
-    private String author;
-    private String publisher;
-    private Date datePublished;
+    protected int bookID;
+    protected String author;
+    protected String publisher;
+    protected Date datePublished;
 
     public String getAuthor() {
         return author;
