@@ -13,13 +13,18 @@ package DAO.Interface;
 import Beans.AdminBean;
 import Beans.ProductManagerBean;
 import Beans.AccountingManagerBean;
+import java.util.ArrayList;
 
 public interface AdminDAOInterface {
     public AdminBean getAdmin (int ID);
-    public boolean createProductManager (ProductManagerBean manager);
-    public boolean createAccountingManager (AccountingManagerBean manager);
+    public boolean addAdmin(AdminBean admin);
+    public boolean editAdmin(int adminID);
+    public AdminBean getAdminById(int adminID);
+    public ArrayList<AdminBean> getAdminByFullName(String firstname, String lastname);
+        
     public boolean unlockAccount (int AccountID);
-    public void viewActivityProductManager (ProductManagerBean manager);
-    public void viewActivityAccountingManager (AccountingManagerBean manager);
+        
+//    public void viewActivityProductManager (ProductManagerBean manager);
+//    public void viewActivityAccountingManager (AccountingManagerBean manager);
     
 }

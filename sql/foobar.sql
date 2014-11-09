@@ -34,6 +34,7 @@ CREATE TABLE `account` (
   `password` varchar(45) NOT NULL,
   `emailAdd` varchar(45) NOT NULL,
   `accounttype` varchar(45) NOT NULL,
+  `locked` BINARY NOT NULL,
   PRIMARY KEY (`accountID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -187,6 +188,8 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
   `customerID` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_accountID` int(11) NOT NULL,
+  `customer_creditCardID` int(11) NOT NULL,
   `apartmentnoBA` int(11) NOT NULL,
   `streetBA` varchar(45) NOT NULL,
   `subdivisionBA` varchar(45) NOT NULL,
@@ -199,10 +202,11 @@ CREATE TABLE `customer` (
   `cityDA` varchar(45) NOT NULL,
   `postalcodeDA` int(11) NOT NULL,
   `countryDA` varchar(45) NOT NULL,
-  `customer_accountID` int(11) NOT NULL,
   PRIMARY KEY (`customerID`),
   KEY `customer_accountID_idx` (`customer_accountID`),
-  CONSTRAINT `customer_accountID` FOREIGN KEY (`customer_accountID`) REFERENCES `account` (`accountID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `customer_accountID` FOREIGN KEY (`customer_accountID`) REFERENCES `account` (`accountID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `customer_creditCardID_idx` (`customer_creditCardID`),
+  CONSTRAINT `customer_creditCardID` FOREIGN KEY (`customer_creditCardID`) REFERENCES `creditcard` (`creditcardID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

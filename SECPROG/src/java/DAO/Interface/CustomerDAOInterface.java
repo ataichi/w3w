@@ -17,14 +17,18 @@ import java.util.ArrayList;
 public interface CustomerDAOInterface {
        public boolean addCustomer(CustomerBean customerBean);
        public boolean editCustomer(CustomerBean customerBean);
-       public boolean removeCustomer(CustomerBean customerBean);
-       public boolean viewCustomer(CustomerBean customerBean);
+       public boolean removeCustomer(int customerID);
+       public CustomerBean getCustomerById(int customerID);
+       public ArrayList<CustomerBean> getAllCustomers();
+       
+       /*
        public boolean addToCart (ProductBean product);
        public boolean removeFromCart (ProductBean product);
        public ArrayList<ProductBean> viewCart();
        public boolean purchase();
        public ProductBean viewProduct (int ProductID);
        public ProductBean searchProduct (int ProductID);
+       */
        
        
        

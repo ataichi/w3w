@@ -11,10 +11,19 @@ package DAO.Interface;
  */
 
 import Beans.CreditCardBean;
+import java.sql.Date;
+import java.util.ArrayList;
 
 public interface CreditCardDAOInterface {
-    public CreditCardBean getCreditCard (int CardNumber);
+    
     public boolean addCreditCard (CreditCardBean creditCard);
     public boolean editCreditCard (CreditCardBean creditCard);
-    public boolean deleteCreditCard (CreditCardBean creditCard);
+    public boolean deleteCreditCard (int creditCardID);
+    
+    public ArrayList<CreditCardBean> getCreditCardByCardName(String cardName);
+    public CreditCardBean getCreditCardByCardNo(String cardNo); 
+    public ArrayList<CreditCardBean> getCreditCardByCardType(String cardType);
+    public ArrayList<CreditCardBean> getCreditCardByExpDate (Date from, Date to);
+    
+    public ArrayList<CreditCardBean> getUserCreditCard (int customerID);
 }

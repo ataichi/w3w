@@ -27,12 +27,8 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("logpass");
 
             AccountDAOInterface accountdao = new AccountDAOImplementation();
-            account = accountdao.getUser(username);
-/*           if(accountdao.isAdmin(username, password))
-            {
-                response.sendRedirect("admin.jsp");
-            }
-            else*/ 
+            account = accountdao.getUserByUsername(username);
+
             if (accountdao.doesUserExist(username, password) && account.getAccountType() == "customer") {
                 session.setAttribute("homeuser", account);
                 response.sendRedirect("customerHOME.jsp");

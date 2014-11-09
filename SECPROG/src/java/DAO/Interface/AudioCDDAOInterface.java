@@ -11,12 +11,17 @@ package DAO.Interface;
  */
 
 import Beans.AudioCDBean;
+import java.util.ArrayList;
 
 public interface AudioCDDAOInterface {
     
-    public AudioCDBean getAudioCD (int ID);
     public boolean addAudioCD (AudioCDBean audioCD);
     public boolean editAudioCD (AudioCDBean audioCD);
-    public boolean deleteAudioCD (AudioCDBean audioCD);
+    public boolean deleteAudioCD (int audioCDID);
+    
+    public AudioCDBean getAudioCDById (int ID);
+    public ArrayList<AudioCDBean> getAllAudioCDByArtist(String artist);
+    public ArrayList<AudioCDBean> getAllAudioCDByRecordCompany(String recordCompany);
+    public ArrayList<AudioCDBean> getAllAudioCD();
     
 }

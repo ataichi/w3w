@@ -14,8 +14,11 @@ import Beans.AccountingManagerBean;
 import java.util.ArrayList;
 
 public interface AccountingManagerDAOInterface {
-  public AccountingManagerBean getAccountingManager (int ID);
+  public boolean addAccountingManager (AccountingManagerBean accountingManager);
   public boolean editAccountingManager (AccountingManagerBean accountingManager);  
+  public boolean deleteAccountingManager (int accountingManagerID);
+  public AccountingManagerBean getAccountingManagerByID  (int ID);
+  
   /**public viewSales ();
   public viewSalesByProductType ();
   public viewSalesByYear ();
