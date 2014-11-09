@@ -33,10 +33,19 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("admin.jsp");
             }
             else*/ 
-            if (accountdao.doesUserExist(username, password)) {
+            if (accountdao.doesUserExist(username, password) && account.getAccountType() == "customer") {
                 session.setAttribute("homeuser", account);
                 response.sendRedirect("customerHOME.jsp");
-            } else {
+            }else if(accountdao.doesUserExist(username, password) && account.getAccountType() == "admin"){
+                session.setAttribute("homeadmin", account);
+                response.sendRedirect("adminHOME.jsp");
+            }else if(accountdao.doesUserExist(username, password) && account.getAccountType() == "product manager"){
+                session.setAttribute("homeproduct", account);
+                response.sendRedirect("productmanagerHOME.jsp");
+            }else if(accountdao.doesUserExist(username, password) && account.getAccountType() == "accounting manager"){
+                session.setAttribute("homeaccounting", account);
+                response.sendRedirect("accountingmanagerHOME.jsp");
+            }else {
                 response.sendRedirect("loginfail.jsp");
             }
 

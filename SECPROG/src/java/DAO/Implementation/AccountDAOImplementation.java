@@ -115,7 +115,6 @@ public class AccountDAOImplementation implements AccountDAOInterface {
 
     @Override
     public boolean doesUserExist(String username, String password) {
-        boolean result = false;
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
@@ -125,15 +124,16 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                result = true;
+                return true;
             }
             connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return result;
+        return false;
     }
 
+    /*
     @Override
     public boolean isAdmin(String username, String password) {
         boolean result = false;
@@ -155,4 +155,21 @@ public class AccountDAOImplementation implements AccountDAOInterface {
         }
         return result;
     }
+
+    @Override
+    public boolean isCustomer(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isProductManager(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isAccountingManager(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    */
 }
