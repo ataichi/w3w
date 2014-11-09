@@ -31,6 +31,7 @@ public class SignupServlet extends HttpServlet {
             AccountDAOInterface userdao = new AccountDAOImplementation();
             CustomerDAOInterface customerdao = new CustomerDAOImplementation();
             boolean checkAccount, checkCustomer;
+            boolean locked=false;
 
             String firstname = request.getParameter("fname");
             String lastname = request.getParameter("lname");
@@ -46,6 +47,7 @@ public class SignupServlet extends HttpServlet {
             account.setEmailAdd(email);
             account.setUsername(username);
             account.setAccountType("customer");
+            account.setLocked(locked);
             
             checkAccount = userdao.addAccount(account);
             
@@ -63,7 +65,7 @@ public class SignupServlet extends HttpServlet {
             int postalcodeDA = Integer.valueOf(request.getParameter("postalcodeDA"));
             String countryDA = request.getParameter("countryDA");
             
-            int customer_accountID = userdao.getUser(username).getAccountID();
+            int customer_accountID = userdao.getUserByUsername(username).getAccountID();
             
             customer.setApartmentNoBA(apartmentnoBA);
             customer.setApartmentNoDA(apartmentnoDA);

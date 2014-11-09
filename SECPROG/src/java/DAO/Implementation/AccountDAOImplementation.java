@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,11 +18,12 @@ public class AccountDAOImplementation implements AccountDAOInterface {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
+    @Override
     public boolean addAccount(AccountBean accountBean) {
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            String query = "insert into account (firstName, lastName, middleInitial, username, password, emailAdd, accounttype) values (?, ?, ?, ?, ?, ?, ?)";
+            String query = "insert into account (firstName, lastName, middleInitial, username, password, emailAdd, accounttype, locked) values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, accountBean.getFirstName());
             ps.setString(2, accountBean.getLastName());
@@ -30,6 +32,7 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             ps.setString(5, accountBean.getPassword());
             ps.setString(6, accountBean.getEmailAdd());
             ps.setString(7, accountBean.getAccountType());
+            ps.setBoolean(8, accountBean.getLocked());
             ps.executeUpdate();
             connection.close();
             return true;
@@ -40,21 +43,23 @@ public class AccountDAOImplementation implements AccountDAOInterface {
         return false;
     }
 
+    @Override
     public boolean updateAccount(AccountBean accountBean) {
 
-        String query = "UPDATE account SET firstName=?, lastName=?, middleInitial=?, username=?, password=?, emailAdd=?, accounttype=? WHERE username=?";
+        String query = "UPDATE account SET firstName=?, lastName=?, middleInitial=?, username=?, password=?, emailAdd=?, accounttype=?, locked=? WHERE username=?";
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, accountBean.getFirstName());
-            preparedStatement.setString(2, accountBean.getLastName());
-            preparedStatement.setString(3, accountBean.getMiddleInitial());
-            preparedStatement.setString(4, accountBean.getUsername());
-            preparedStatement.setString(5, accountBean.getPassword());
-            preparedStatement.setString(6, accountBean.getEmailAdd());
-            preparedStatement.setString(7, accountBean.getAccountType());
-            preparedStatement.executeUpdate();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, accountBean.getFirstName());
+            ps.setString(2, accountBean.getLastName());
+            ps.setString(3, accountBean.getMiddleInitial());
+            ps.setString(4, accountBean.getUsername());
+            ps.setString(5, accountBean.getPassword());
+            ps.setString(6, accountBean.getEmailAdd());
+            ps.setBoolean(7, accountBean.getLocked());
+            ps.setString(8, accountBean.getAccountType());
+            ps.executeUpdate();
             connection.close();
             return true;
         } catch (SQLException ex) {
@@ -65,7 +70,7 @@ public class AccountDAOImplementation implements AccountDAOInterface {
     }
 
     @Override
-    public AccountBean getUser(String username) {
+    public AccountBean getUserByUsername(String username) {
 
         try {
             Connector c = new Connector();
@@ -78,6 +83,7 @@ public class AccountDAOImplementation implements AccountDAOInterface {
 
             String firstName, lastName, middleInitial, uname, password, emailAdd, type;
             int accountID;
+            boolean locked;
 
             AccountBean bean = new AccountBean();
 
@@ -89,7 +95,8 @@ public class AccountDAOImplementation implements AccountDAOInterface {
                 password = resultSet.getString("password");
                 emailAdd = resultSet.getString("emailAdd");
                 type = resultSet.getString("accounttype");
-                accountID = resultSet.getInt("accountID");;
+                accountID = resultSet.getInt("accountID");
+                locked=resultSet.getBoolean("locked");
 
                 bean.setAccountID(accountID);
                 bean.setAccountType(type);
@@ -99,6 +106,7 @@ public class AccountDAOImplementation implements AccountDAOInterface {
                 bean.setMiddleInitial(middleInitial);
                 bean.setPassword(password);
                 bean.setUsername(uname);
+                bean.setLocked(locked);
 
                 System.out.println("hssere");
                 
@@ -122,8 +130,8 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
                 return true;
             }
             connection.close();
@@ -172,4 +180,29 @@ public class AccountDAOImplementation implements AccountDAOInterface {
     }
     
     */
+
+    @Override
+    public boolean lockAccount(AccountBean accountBean) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<AccountBean> getAccountByName(String firstname, String lastname) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<AccountBean> getAccountByFirstName(String firstname) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<AccountBean> getAccountByLastName(String lastname) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<AccountBean> getAllAccounts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

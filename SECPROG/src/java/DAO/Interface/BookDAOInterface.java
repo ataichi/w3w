@@ -11,10 +11,17 @@ package DAO.Interface;
  */
 
 import Beans.BookBean;
+import java.sql.Date;
+import java.util.ArrayList;
 
 public interface BookDAOInterface {
-    public BookBean getBook (int ID);
+    
     public boolean addBook (BookBean book);
     public boolean editBook (BookBean book);
-    public boolean deleteBook (BookBean book);
+    public boolean deleteBook (int bookID);
+    
+    public BookBean getBookByID(int bookID);
+    public ArrayList<BookBean> getBookByAuthor(String author);
+    public ArrayList<BookBean> getBookByPublisher(String publisher);
+    public ArrayList<BookBean> getBookByDate(Date from, Date to);
 }

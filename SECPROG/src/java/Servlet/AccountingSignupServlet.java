@@ -1,52 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlet;
 
-import Beans.AccountBean;
-import DAO.Implementation.AccountDAOImplementation;
-import DAO.Interface.AccountDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+/**
+ *
+ * @author Giodee
+ */
+@WebServlet(name = "AccountingSignupServlet", urlPatterns = {"/AccountingSignupServlet"})
+public class AccountingSignupServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            HttpSession session = request.getSession();
-            AccountBean account = new AccountBean();
-            String username = request.getParameter("loguser");
-            String password = request.getParameter("logpass");
-
-            AccountDAOInterface accountdao = new AccountDAOImplementation();
-            account = accountdao.getUserByUsername(username);
-
-            if (accountdao.doesUserExist(username, password) && "customer".equals(account.getAccountType())) {
-                session.setAttribute("homeuser", account);
-                response.sendRedirect("customerHOME.jsp");
-            }else if(accountdao.doesUserExist(username, password) && "admin".equals(account.getAccountType())){
-                session.setAttribute("homeadmin", account);
-                response.sendRedirect("adminHOME.jsp");
-            }else if(accountdao.doesUserExist(username, password) && "product manager".equals(account.getAccountType())){
-                session.setAttribute("homeproduct", account);
-                response.sendRedirect("productmanagerHOME.jsp");
-            }else if(accountdao.doesUserExist(username, password) && "accounting manager".equals(account.getAccountType())){
-                session.setAttribute("homeaccounting", account);
-                response.sendRedirect("accountingmanagerHOME.jsp");
-            }else {
-                out.println(accountdao.doesUserExist(username, password));
-           out.println(account.getAccountType());     
-                response.sendRedirect("loginfail.jsp");
-            }
-
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AccountingSignupServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AccountingSignupServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         } finally {
             out.close();
         }
@@ -90,4 +87,5 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
