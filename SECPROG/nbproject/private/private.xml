@@ -5,9 +5,12 @@
         <group>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/Servlet/SignupServlet.java</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DAO/Implementation/ProductDAOImplementation.java</file>
+            <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/Servlet/AccountingSignupServlet.java</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DAO/Implementation/ProductOrderDAOImplementation.java</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DAO/Implementation/ProductManagerDAOImplementation.java</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DBConnection/Connector.java</file>
+            <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DAO/Interface/CustomerDAOInterface.java</file>
+            <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DAO/Interface/ProductManagerDAOInterface.java</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/Servlet/LoginServlet.java</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/web/home.html</file>
             <file>file:/C:/Users/Danica/Documents/GitHub/w3w/SECPROG/src/java/DAO/Implementation/ShoppingCartDAOImplementation.java</file>
