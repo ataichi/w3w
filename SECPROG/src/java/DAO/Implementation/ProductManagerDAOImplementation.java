@@ -1,4 +1,4 @@
-
+ 
 package DAO.Implementation;
 
 import Beans.ProductBean;
@@ -31,9 +31,10 @@ public class ProductManagerDAOImplementation implements ProductManagerDAOInterfa
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            String query = "insert into productmanager (productmanager_accountID) values (?)";
+            String query = "insert into productmanager (prodmanager_accountID, prodType) values (?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, productManager.getProdmanager_accountID());
+            ps.setString(2, productManager.getProdType());
             ps.executeUpdate();
             connection.close();
             return true;

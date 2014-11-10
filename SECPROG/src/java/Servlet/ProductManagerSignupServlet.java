@@ -41,17 +41,18 @@ public class ProductManagerSignupServlet extends HttpServlet {
             account.setEmailAdd(request.getParameter("email"));
             account.setUsername(request.getParameter("uname"));
             account.setAccountType("product manager");
+            account.setLocked(false);
             
             int productmanager_accountID = userdao.getUserByUsername(request.getParameter("uname")).getAccountID();
             productManager.setProdmanager_accountID(productmanager_accountID);
-            productManager.setProdType(request.getParameter(""));//null pa to kasi wala pa UI so wala pa name na igeget
-//^EDIT ONCE MAY UI NA FOR ADMIN HIHI, so lagi muna siya fail for now.            
+            productManager.setProdType(request.getParameter("prodType"));//null pa to kasi wala pa UI so wala pa name na igeget
+//^EDIT ONCE MAY UI NA FOR ADMIN HIHI, so lagi muna siya fail for now. 
+            
             if(userdao.addAccount(account) && pmdao.addProductManager(productManager)){
                 response.sendRedirect("adminHOME.jsp");
             }else{
                 response.sendRedirect("signupfail.jsp");
             }
-        
         } finally {
             out.close();
         }

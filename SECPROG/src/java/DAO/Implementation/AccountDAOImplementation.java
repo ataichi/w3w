@@ -38,7 +38,7 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             return true;
 
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -46,7 +46,7 @@ public class AccountDAOImplementation implements AccountDAOInterface {
     @Override
     public boolean updateAccount(AccountBean accountBean) {
 
-        String query = "UPDATE account SET firstName=?, lastName=?, middleInitial=?, username=?, password=?, emailAdd=?, accounttype=?, locked=? WHERE username=?";
+        String query = "UPDATE account SET firstName=?, lastName=?, middleInitial=?, username=?, password=?, emailAdd=?, accounttype=?, locked=? WHERE accountID=?";
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
@@ -59,11 +59,12 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             ps.setString(6, accountBean.getEmailAdd());
             ps.setBoolean(7, accountBean.getLocked());
             ps.setString(8, accountBean.getAccountType());
+            ps.setInt(9, accountBean.getAccountID());
             ps.executeUpdate();
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
