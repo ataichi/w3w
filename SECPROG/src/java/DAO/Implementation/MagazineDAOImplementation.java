@@ -103,7 +103,7 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
             return false;
     }
@@ -120,7 +120,7 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;
