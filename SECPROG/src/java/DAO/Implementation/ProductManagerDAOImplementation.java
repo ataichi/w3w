@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO.Implementation;
 
 import Beans.ProductBean;
@@ -30,6 +26,23 @@ public class ProductManagerDAOImplementation implements ProductManagerDAOInterfa
     double price;
     int year;
     String query;
+    
+       public boolean addProductManager(ProductManagerBean productManager) {
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "insert into productmanager (productmanager_accountID) values (?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, productManager.getProdmanager_accountID());
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     
     @Override
     public ProductManagerBean getProductManager(int ID) {
