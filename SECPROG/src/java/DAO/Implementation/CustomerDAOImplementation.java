@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package DAO.Implementation;
 
 import Beans.CustomerBean;
-import Beans.ProductBean;
 import DAO.Interface.CustomerDAOInterface;
 import DBConnection.Connector;
 import java.sql.Connection;
@@ -32,14 +26,14 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
                     + " apartmentnoDA, streetDA, subdivisionDA, cityDA, postalcodeDA, countryDA, customer_accountID) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, customerBean.getApartmentNoBA());
+            ps.setString(1, customerBean.getApartmentNoBA());
             ps.setString(2, customerBean.getStreetBA());
             ps.setString(3, customerBean.getSubdivisionBA());
             ps.setString(4, customerBean.getCityBA());
             ps.setInt(5, customerBean.getPostalCodeBA());
             ps.setString(6, customerBean.getCountryBA());
             
-            ps.setInt(7, customerBean.getApartmentNoBA());
+            ps.setString(7, customerBean.getApartmentNoBA());
             ps.setString(8, customerBean.getStreetBA());
             ps.setString(9, customerBean.getSubdivisionBA());
             ps.setString(10, customerBean.getCityBA());
