@@ -2,13 +2,13 @@
 package Beans;
 
 public class CustomerBean {
-    protected int apartmentNoBA;
+    protected String apartmentNoBA;
     protected String streetBA;
     protected String subdivisionBA;
     protected String cityBA;
     protected int postalCodeBA;
     protected String countryBA;
-    protected int apartmentNoDA;
+    protected String apartmentNoDA;
     protected String streetDA;
     protected String subdivisionDA;
     protected String cityDA;
@@ -34,11 +34,11 @@ public class CustomerBean {
         this.customerID = customerID;
     }
     
-    public int getApartmentNoBA() {
+    public String getApartmentNoBA() {
         return apartmentNoBA;
     }
 
-    public void setApartmentNoBA(int apartmentNoBA) {
+    public void setApartmentNoBA(String apartmentNoBA) {
         this.apartmentNoBA = apartmentNoBA;
     }
 
@@ -82,11 +82,11 @@ public class CustomerBean {
         this.countryBA = countryBA;
     }
 
-    public int getApartmentNoDA() {
+    public String getApartmentNoDA() {
         return apartmentNoDA;
     }
 
-    public void setApartmentNoDA(int apartmentNoDA) {
+    public void setApartmentNoDA(String apartmentNoDA) {
         this.apartmentNoDA = apartmentNoDA;
     }
 

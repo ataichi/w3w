@@ -51,14 +51,14 @@ public class SignupServlet extends HttpServlet {
             
             checkAccount = userdao.addAccount(account);
             
-            int apartmentnoBA = Integer.valueOf(request.getParameter("apartmentnoBA"));
+            String apartmentnoBA = request.getParameter("apartmentnoBA");
             String streetBA = request.getParameter("streetBA");
             String subdivisionBA = request.getParameter("subdivisionBA");
             String cityBA = request.getParameter("cityBA");
             int postalcodeBA = Integer.valueOf(request.getParameter("postalcodeBA"));
             String countryBA = request.getParameter("countryBA");
             
-            int apartmentnoDA = Integer.valueOf(request.getParameter("apartmentnoDA"));
+            String apartmentnoDA = request.getParameter("apartmentnoDA");
             String streetDA = request.getParameter("streetDA");
             String subdivisionDA = request.getParameter("subdivisionDA");
             String cityDA = request.getParameter("cityDA");
