@@ -17,9 +17,14 @@ import java.util.logging.Logger;
  * @author Danica
  */
 public class ProductManagerDAOImplementation implements ProductManagerDAOInterface {
-    ProductManagerBean bean = new ProductManagerBean();
+    ProductManagerBean prodmngrbean = new ProductManagerBean();
+    ProductBean prodbean = new ProductBean();
     int productmanagerID, prodmanager_accountID;
     String prodType;
+    int productID;
+    String title, type, summary, genre;
+    double price;
+    int year;
     String query;
     
        public boolean addProductManager(ProductManagerBean productManager) {
@@ -44,7 +49,7 @@ public class ProductManagerDAOImplementation implements ProductManagerDAOInterfa
         try {
             Connector c = new Connector();
             Connection connection = c.getConnection();
-            query = "select * from product where productID = ?";
+            query = "select * from productmanager where productmanagerID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, ID);
             
@@ -55,29 +60,79 @@ public class ProductManagerDAOImplementation implements ProductManagerDAOInterfa
                 prodmanager_accountID = resultSet.getInt("prodmanager_accountID");
                 prodType = resultSet.getString("prodType");
                 
-                bean = new ProductManagerBean();
+                prodmngrbean = new ProductManagerBean();
                 
-                bean.setProdType(prodType);
-                bean.setProdmanager_accountID(prodmanager_accountID);
-                bean.setProductmanagerID(productmanagerID);
+                prodmngrbean.setProdType(prodType);
+                prodmngrbean.setProdmanager_accountID(prodmanager_accountID);
+                prodmngrbean.setProductmanagerID(productmanagerID);
             }
             connection.close();
-            return bean;
+            return prodmngrbean;
             
         } catch (SQLException ex) {
-            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     @Override
     public boolean editProductManager(ProductManagerBean productManager) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "update productmanager set prodmanager_accountID = ? prodType = ? where productmanagerID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, productManager.getProdmanager_accountID());
+            ps.setString(2, productManager.getProdType());
+            ps.setInt(3, productManager.getProductmanagerID());
+            ps.executeUpdate();
+            
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return false;
     }
 
     @Override
     public ProductBean viewProduct(int ID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "select * from product where productID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+            
+            ResultSet resultSet = ps.executeQuery();
+            
+            while(resultSet.next()) {
+                productID = resultSet.getInt("productID");
+                type = resultSet.getString("type");
+                title = resultSet.getString("title");
+                price = resultSet.getDouble("price");
+                summary = resultSet.getString("summary");
+                genre = resultSet.getString("genre");
+                year = resultSet.getInt("year");
+                
+                prodbean = new ProductBean();
+                
+                prodbean.setProductID(productID);
+                prodbean.setType(type);
+                prodbean.setTitle(title);
+                prodbean.setPrice(price);
+                prodbean.setSummary(summary);
+                prodbean.setGenre(genre);
+                prodbean.setYear(year);
+                
+            }
+            
+            return prodbean;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

@@ -186,13 +186,13 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
   `customerID` int(11) NOT NULL AUTO_INCREMENT,
-  `apartmentnoBA` int(11) NOT NULL,
+  `apartmentnoBA` varchar(45) NOT NULL,
   `streetBA` varchar(45) NOT NULL,
   `subdivisionBA` varchar(45) NOT NULL,
   `cityBA` varchar(45) NOT NULL,
   `postalcodeBA` int(11) NOT NULL,
   `countryBA` varchar(45) NOT NULL,
-  `apartmentnoDA` int(11) NOT NULL,
+  `apartmentnoDA` varchar(45) NOT NULL,
   `streetDA` varchar(45) NOT NULL,
   `subdivisionDA` varchar(45) NOT NULL,
   `cityDA` varchar(45) NOT NULL,
@@ -421,4 +421,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-10 10:07:13
+-- Dump completed on 2014-11-10 10:23:46
