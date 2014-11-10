@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import Beans.AccountBean;
 import Beans.ProductManagerBean;
 import DAO.Implementation.AccountDAOImplementation;
+import DAO.Implementation.ProductManagerDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
 import DAO.Interface.ProductManagerDAOInterface;
 import java.io.IOException;
@@ -26,28 +22,36 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ProductManagerSignupServlet", urlPatterns = {"/ProductManagerSignupServlet"})
 public class ProductManagerSignupServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
             
             HttpSession session = request.getSession();
             AccountBean account = new AccountBean();
             ProductManagerBean productManager = new ProductManagerBean();
             AccountDAOInterface userdao = new AccountDAOImplementation();
-   //         ProductManagerDAOInterface pmdao = new ProductManagerDAOImplementation();
+            ProductManagerDAOInterface pmdao = new ProductManagerDAOImplementation();
             
+            account.setFirstName(request.getParameter("fname"));
+            account.setLastName(request.getParameter("lname"));
+            account.setMiddleInitial(request.getParameter("mname"));
+            account.setPassword(request.getParameter("pass1"));
+            account.setEmailAdd(request.getParameter("email"));
+            account.setUsername(request.getParameter("uname"));
+            account.setAccountType("product manager");
+            
+            int productmanager_accountID = userdao.getUserByUsername(request.getParameter("uname")).getAccountID();
+            productManager.setProdmanager_accountID(productmanager_accountID);
+            productManager.setProdType(request.getParameter(""));//null pa to kasi wala pa UI so wala pa name na igeget
+//^EDIT ONCE MAY UI NA FOR ADMIN HIHI, so lagi muna siya fail for now.            
+            if(userdao.addAccount(account) && pmdao.addProductManager(productManager)){
+                response.sendRedirect("adminHOME.jsp");
+            }else{
+                response.sendRedirect("signupfail.jsp");
+            }
+        
         } finally {
             out.close();
         }
