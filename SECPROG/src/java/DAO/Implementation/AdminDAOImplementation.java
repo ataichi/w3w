@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO.Implementation;
 
+import Beans.AccountBean;
 import Beans.AdminBean;
 import Beans.ProductBean;
 import Beans.ProductManagerBean;
@@ -23,6 +19,7 @@ import java.util.logging.Logger;
  * @author Danica
  */
 public class AdminDAOImplementation implements AdminDAOInterface {
+
     ProductManagerBean prodmngrbean = new ProductManagerBean();
     ProductBean prodbean = new ProductBean();
     int productmanagerID, prodmanager_accountID;
@@ -71,23 +68,23 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             query = "select * from productmanager where productmanagerID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, ID);
-            
+
             ResultSet resultSet = ps.executeQuery();
-            
-            while(resultSet.next()) {
+
+            while (resultSet.next()) {
                 productmanagerID = resultSet.getInt("productmanagerID");
                 prodmanager_accountID = resultSet.getInt("prodmanager_accountID");
                 prodType = resultSet.getString("prodType");
-                
+
                 prodmngrbean = new ProductManagerBean();
-                
+
                 prodmngrbean.setProdType(prodType);
                 prodmngrbean.setProdmanager_accountID(prodmanager_accountID);
                 prodmngrbean.setProductmanagerID(productmanagerID);
             }
             connection.close();
             return prodmngrbean;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,13 +120,13 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             ps.setString(2, productManager.getProdType());
             ps.setInt(3, productManager.getProductmanagerID());
             ps.executeUpdate();
-            
+
             connection.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return false;
+        return false;
     }
 
     @Override
@@ -140,10 +137,10 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             query = "select * from product where productID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, ID);
-            
+
             ResultSet resultSet = ps.executeQuery();
-            
-            while(resultSet.next()) {
+
+            while (resultSet.next()) {
                 productID = resultSet.getInt("productID");
                 type = resultSet.getString("type");
                 title = resultSet.getString("title");
@@ -151,9 +148,9 @@ public class AdminDAOImplementation implements AdminDAOInterface {
                 summary = resultSet.getString("summary");
                 genre = resultSet.getString("genre");
                 year = resultSet.getInt("year");
-                
+
                 prodbean = new ProductBean();
-                
+
                 prodbean.setProductID(productID);
                 prodbean.setType(type);
                 prodbean.setTitle(title);
@@ -161,11 +158,11 @@ public class AdminDAOImplementation implements AdminDAOInterface {
                 prodbean.setSummary(summary);
                 prodbean.setGenre(genre);
                 prodbean.setYear(year);
-                
+
             }
-            
+
             return prodbean;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -176,5 +173,37 @@ public class AdminDAOImplementation implements AdminDAOInterface {
     public void viewActivityLog() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    public ArrayList<AccountBean> searchUserByFirstName(String firstname) {
+        try {
+            String temp = "%" + firstname + "%";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "SELECT * from account where firstName like ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, temp);
+            ResultSet resultSet = ps.executeQuery();
+            ArrayList<AccountBean> list = new ArrayList<AccountBean>();
+            AccountBean bean = new AccountBean();
+            
+            while (resultSet.next()) {
+                bean = new AccountBean();
+                bean.setAccountID(resultSet.getInt("accountID"));
+                bean.setAccountType(resultSet.getString("accounttype"));
+                bean.setFirstName(resultSet.getString("firstName"));
+                bean.setLastName(resultSet.getString("lastName"));
+                bean.setMiddleInitial(resultSet.getString("middleInitial"));
+                bean.setUsername(resultSet.getString("username"));
+                bean.setPassword(resultSet.getString("password"));
+                bean.setEmailAdd(resultSet.getString("emailAdd"));
+                list.add(bean);
+            }
+            return list;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }
