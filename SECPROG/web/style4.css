@@ -1,6 +1,6 @@
 /* Dayoka CSS file1 for MP */
 
-#banner { position: absolute; top: 3%; left: 1%; z-index:20;}
+#banner { position: absolute; top: 0%; left: 0%; z-index:-1; }
 header { height: 100px; }
 header #navigator { float: right; line-height: 150px; font-size: 20px; font-weight: bold; color: #555; padding-left: 3em; padding-top: 1em; }
 header #navigator a .linky{ text-decoration: none; color: #E60000; margin-right: 5em;}
