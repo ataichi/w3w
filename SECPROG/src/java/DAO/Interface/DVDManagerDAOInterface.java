@@ -11,10 +11,14 @@ package DAO.Interface;
  */
 
 import Beans.DVDBean;
+import java.util.ArrayList;
 
-public interface DVDDAOInterface {
-    public DVDBean getDVD (int ID);
+public interface DVDManagerDAOInterface {
     public boolean addDVD (DVDBean DVD);
     public boolean editDVD (DVDBean DVD);
     public boolean deleteDVD (DVDBean DVD);
+    public DVDBean getDVD (int ID);
+    public ArrayList<DVDBean> viewAllDVD();
+    public boolean restockDVD(int productID, int num);
+    public ArrayList<DVDBean> searchDVDbyTitle();
 }

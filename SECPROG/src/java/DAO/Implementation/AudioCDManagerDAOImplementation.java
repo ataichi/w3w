@@ -6,14 +6,14 @@
 package DAO.Implementation;
 
 import Beans.AudioCDBean;
-import DAO.Interface.AudioCDDAOInterface;
+import DAO.Interface.AudioManagerCDDAOInterface;
 import java.util.ArrayList;
 
 /**
  *
  * @author Danica
  */
-public class AudioCDDAOImplementation implements AudioCDDAOInterface {
+public class AudioCDManagerDAOImplementation implements AudioManagerCDDAOInterface {
 
     @Override
     public boolean addAudioCD(AudioCDBean audioCD) {

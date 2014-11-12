@@ -6,13 +6,14 @@
 package DAO.Implementation;
 
 import Beans.MagazineBean;
-import DAO.Interface.MagazineDAOInterface;
+import DAO.Interface.MagazineManagerDAOInterface;
 import DBConnection.Connector;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Danica
  */
-public class MagazineDAOImplementation implements MagazineDAOInterface{
+public class MagazineManagerDAOImplementation implements MagazineManagerDAOInterface{
     MagazineBean bean = new MagazineBean();
     int magazineID, magazine_accountID, volumeNo, issueNo;
     String publisher;
@@ -58,7 +59,7 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
             return bean;
             
         } catch (SQLException ex) {
-            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MagazineManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -81,7 +82,7 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
         
         
         } catch (SQLException ex) {
-            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MagazineManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -103,7 +104,7 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MagazineManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
             return false;
     }
@@ -120,11 +121,26 @@ public class MagazineDAOImplementation implements MagazineDAOInterface{
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(MagazineDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MagazineManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;
     
+    }
+
+    @Override
+    public ArrayList<MagazineBean> viewAllMagazine() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean restockMagazine(int productID, int num) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<MagazineBean> searchMagazinebyTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

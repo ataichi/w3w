@@ -6,7 +6,7 @@
 package DAO.Implementation;
 
 import Beans.BookBean;
-import DAO.Interface.BookDAOInterface;
+import DAO.Interface.BookManagerDAOInterface;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Danica
  */
-public class BookDAOImplementation implements BookDAOInterface {
+public class BookManagerDAOImplementation implements BookManagerDAOInterface {
 
     @Override
     public boolean addBook(BookBean book) {
@@ -48,6 +48,16 @@ public class BookDAOImplementation implements BookDAOInterface {
 
     @Override
     public ArrayList<BookBean> getBookByDate(Date from, Date to) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<BookBean> viewAllBook() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean restockBook(int productID, int num) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

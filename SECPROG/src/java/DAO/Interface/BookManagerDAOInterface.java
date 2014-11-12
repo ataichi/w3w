@@ -14,7 +14,7 @@ import Beans.BookBean;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public interface BookDAOInterface {
+public interface BookManagerDAOInterface {
     
     public boolean addBook (BookBean book);
     public boolean editBook (BookBean book);
@@ -24,4 +24,7 @@ public interface BookDAOInterface {
     public ArrayList<BookBean> getBookByAuthor(String author);
     public ArrayList<BookBean> getBookByPublisher(String publisher);
     public ArrayList<BookBean> getBookByDate(Date from, Date to);
+    
+    public ArrayList<BookBean> viewAllBook();
+    public boolean restockBook(int productID, int num);
 }

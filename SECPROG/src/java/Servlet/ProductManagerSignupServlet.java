@@ -3,9 +3,9 @@ package Servlet;
 import Beans.AccountBean;
 import Beans.ProductManagerBean;
 import DAO.Implementation.AccountDAOImplementation;
-import DAO.Implementation.ProductManagerDAOImplementation;
+import DAO.Implementation.AdminDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
-import DAO.Interface.ProductManagerDAOInterface;
+import DAO.Interface.AdminDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +32,7 @@ public class ProductManagerSignupServlet extends HttpServlet {
             AccountBean account = new AccountBean();
             ProductManagerBean productManager = new ProductManagerBean();
             AccountDAOInterface userdao = new AccountDAOImplementation();
-            ProductManagerDAOInterface pmdao = new ProductManagerDAOImplementation();
+            AdminDAOInterface admindao = new AdminDAOImplementation();
             
             account.setFirstName(request.getParameter("fname"));
             account.setLastName(request.getParameter("lname"));
@@ -48,7 +48,7 @@ public class ProductManagerSignupServlet extends HttpServlet {
             productManager.setProdType(request.getParameter("prodType"));//null pa to kasi wala pa UI so wala pa name na igeget
 //^EDIT ONCE MAY UI NA FOR ADMIN HIHI, so lagi muna siya fail for now. 
             
-            if(userdao.addAccount(account) && pmdao.addProductManager(productManager)){
+            if(userdao.addAccount(account) && admindao.addProductManager(productManager)){
                 response.sendRedirect("adminHOME.jsp");
             }else{
                 response.sendRedirect("signupfail.jsp");

@@ -6,12 +6,13 @@
 package DAO.Implementation;
 
 import Beans.DVDBean;
-import DAO.Interface.DVDDAOInterface;
+import DAO.Interface.DVDManagerDAOInterface;
 import DBConnection.Connector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Danica
  */
-public class DVDDAOImplementation implements DVDDAOInterface {
+public class DVDManagerDAOImplementation implements DVDManagerDAOInterface {
     DVDBean bean = new DVDBean();
     int dvdID, dvd_productID;
     String director, actor, productCompany;
@@ -55,7 +56,7 @@ public class DVDDAOImplementation implements DVDDAOInterface {
             return bean;
             
         } catch (SQLException ex) {
-            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DVDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -78,7 +79,7 @@ public class DVDDAOImplementation implements DVDDAOInterface {
             return true;
             
         } catch (SQLException ex) {
-            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DVDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -98,7 +99,7 @@ public class DVDDAOImplementation implements DVDDAOInterface {
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DVDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
             return false;
     }
@@ -114,12 +115,25 @@ public class DVDDAOImplementation implements DVDDAOInterface {
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(DVDDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DVDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;
-            
-    
+    }
+
+    @Override
+    public ArrayList<DVDBean> viewAllDVD() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<DVDBean> searchDVDbyTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean restockDVD(int productID, int num) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

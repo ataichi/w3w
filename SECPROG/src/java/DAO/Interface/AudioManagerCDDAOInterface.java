@@ -13,7 +13,7 @@ package DAO.Interface;
 import Beans.AudioCDBean;
 import java.util.ArrayList;
 
-public interface AudioCDDAOInterface {
+public interface AudioManagerCDDAOInterface {
     
     public boolean addAudioCD (AudioCDBean audioCD);
     public boolean editAudioCD (AudioCDBean audioCD);
