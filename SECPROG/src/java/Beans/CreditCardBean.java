@@ -8,6 +8,15 @@ public class CreditCardBean {
     protected String cardno;
     protected String cardtype;
     protected Date cardexpdate;
+    protected int creditcardID;
+
+    public int getCreditcardID() {
+        return creditcardID;
+    }
+
+    public void setCreditcardID(int creditcardID) {
+        this.creditcardID = creditcardID;
+    }
 
     public String getCardname() {
         return cardname;
