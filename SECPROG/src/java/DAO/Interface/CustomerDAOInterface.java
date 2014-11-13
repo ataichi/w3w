@@ -21,14 +21,13 @@ public interface CustomerDAOInterface {
        public CustomerBean getCustomerById(int customerID);
        public ArrayList<CustomerBean> getAllCustomers();
        
-       /*
+       
        public boolean addToCart (ProductBean product);
        public boolean removeFromCart (ProductBean product);
        public ArrayList<ProductBean> viewCart();
-       public boolean purchase();
+       public boolean purchase(int productID);
        public ProductBean viewProduct (int ProductID);
        public ProductBean searchProduct (int ProductID);
-       */
        
        
        

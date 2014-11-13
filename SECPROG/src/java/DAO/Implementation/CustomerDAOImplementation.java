@@ -2,6 +2,7 @@
 package DAO.Implementation;
 
 import Beans.CustomerBean;
+import Beans.ProductBean;
 import DAO.Interface.CustomerDAOInterface;
 import DBConnection.Connector;
 import java.sql.Connection;
@@ -67,6 +68,36 @@ public class CustomerDAOImplementation implements CustomerDAOInterface {
 
     @Override
     public ArrayList<CustomerBean> getAllCustomers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean addToCart(ProductBean product) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeFromCart(ProductBean product) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<ProductBean> viewCart() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean purchase(int productID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ProductBean viewProduct(int ProductID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ProductBean searchProduct(int ProductID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
