@@ -57,7 +57,19 @@ public class AdminDAOImplementation implements AdminDAOInterface {
 
     @Override
     public boolean unlockAccount(int AccountID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "UPDATE account SET locked=? WHERE accountID=?";
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setBoolean(1, false);
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override

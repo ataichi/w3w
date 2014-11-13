@@ -183,27 +183,227 @@ public class AccountDAOImplementation implements AccountDAOInterface {
     */
 
     @Override
-    public boolean lockAccount(AccountBean accountBean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ArrayList<AccountBean> getAccountByName(String firstname, String lastname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from account where firstName=? and lastName=?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, firstname);
+            ps.setString(2, lastname);
+            
+            String firstName, lastName, middleInitial, uname, password, emailAdd, type;
+            int accountID;
+            boolean locked;
+
+            AccountBean bean = new AccountBean();
+            ArrayList<AccountBean> alist = new ArrayList<AccountBean>();
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                accountID = rs.getInt("accountID");
+                firstName = rs.getString("firstName");
+                lastName = rs.getString("lastName");
+                middleInitial = rs.getString("middleInitial");
+                uname = rs.getString("username");
+                password = rs.getString("password");
+                emailAdd = rs.getString("emailAdd");
+                type = rs.getString("accounttype");
+                locked = rs.getBoolean("locked");
+                
+                bean = new AccountBean();
+                
+                bean.setAccountID(accountID);
+                bean.setAccountType(type);
+                bean.setEmailAdd(emailAdd);
+                bean.setFirstName(firstName);
+                bean.setLastName(lastName);
+                bean.setLocked(locked);
+                bean.setMiddleInitial(middleInitial);
+                bean.setPassword(password);
+                bean.setUsername(uname);
+                
+                alist.add(bean);
+            }
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public ArrayList<AccountBean> getAccountByFirstName(String firstname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from account where firstName=?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, firstname);
+            
+            String firstName, lastName, middleInitial, uname, password, emailAdd, type;
+            int accountID;
+            boolean locked;
+
+            AccountBean bean = new AccountBean();
+            ArrayList<AccountBean> alist = new ArrayList<AccountBean>();
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                accountID = rs.getInt("accountID");
+                firstName = rs.getString("firstName");
+                lastName = rs.getString("lastName");
+                middleInitial = rs.getString("middleInitial");
+                uname = rs.getString("username");
+                password = rs.getString("password");
+                emailAdd = rs.getString("emailAdd");
+                type = rs.getString("accounttype");
+                locked = rs.getBoolean("locked");
+                
+                bean = new AccountBean();
+                
+                bean.setAccountID(accountID);
+                bean.setAccountType(type);
+                bean.setEmailAdd(emailAdd);
+                bean.setFirstName(firstName);
+                bean.setLastName(lastName);
+                bean.setLocked(locked);
+                bean.setMiddleInitial(middleInitial);
+                bean.setPassword(password);
+                bean.setUsername(uname);
+                
+                alist.add(bean);
+            }
+            
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public ArrayList<AccountBean> getAccountByLastName(String lastname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from account where lastName=?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, lastname);
+            
+            String firstName, lastName, middleInitial, uname, password, emailAdd, type;
+            int accountID;
+            boolean locked;
+
+            AccountBean bean = new AccountBean();
+            ArrayList<AccountBean> alist = new ArrayList<AccountBean>();
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                accountID = rs.getInt("accountID");
+                firstName = rs.getString("firstName");
+                lastName = rs.getString("lastName");
+                middleInitial = rs.getString("middleInitial");
+                uname = rs.getString("username");
+                password = rs.getString("password");
+                emailAdd = rs.getString("emailAdd");
+                type = rs.getString("accounttype");
+                locked = rs.getBoolean("locked");
+                
+                bean = new AccountBean();
+                
+                bean.setAccountID(accountID);
+                bean.setAccountType(type);
+                bean.setEmailAdd(emailAdd);
+                bean.setFirstName(firstName);
+                bean.setLastName(lastName);
+                bean.setLocked(locked);
+                bean.setMiddleInitial(middleInitial);
+                bean.setPassword(password);
+                bean.setUsername(uname);
+                
+                alist.add(bean);
+            }
+            
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public ArrayList<AccountBean> getAllAccounts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from account";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            
+            String firstName, lastName, middleInitial, uname, password, emailAdd, type;
+            int accountID;
+            boolean locked;
+
+            AccountBean bean = new AccountBean();
+            ArrayList<AccountBean> alist = new ArrayList<AccountBean>();
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                accountID = rs.getInt("accountID");
+                firstName = rs.getString("firstName");
+                lastName = rs.getString("lastName");
+                middleInitial = rs.getString("middleInitial");
+                uname = rs.getString("username");
+                password = rs.getString("password");
+                emailAdd = rs.getString("emailAdd");
+                type = rs.getString("accounttype");
+                locked = rs.getBoolean("locked");
+                
+                bean = new AccountBean();
+                
+                bean.setAccountID(accountID);
+                bean.setAccountType(type);
+                bean.setEmailAdd(emailAdd);
+                bean.setFirstName(firstName);
+                bean.setLastName(lastName);
+                bean.setLocked(locked);
+                bean.setMiddleInitial(middleInitial);
+                bean.setPassword(password);
+                bean.setUsername(uname);
+                
+                alist.add(bean);
+            }
+            
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean lockAccount(AccountBean accountBean) {
+        try {
+            String query = "update account set locked=? where=accountID=?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setBoolean(1, true);
+            ps.setInt(2, accountBean.getAccountID());
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }
