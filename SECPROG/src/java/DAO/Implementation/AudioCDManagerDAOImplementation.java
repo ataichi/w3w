@@ -7,7 +7,14 @@ package DAO.Implementation;
 
 import Beans.AudioCDBean;
 import DAO.Interface.AudioManagerCDDAOInterface;
+import DBConnection.Connector;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,39 +22,219 @@ import java.util.ArrayList;
  */
 public class AudioCDManagerDAOImplementation implements AudioManagerCDDAOInterface {
 
+    AudioCDBean bean = new AudioCDBean();
+    ArrayList<AudioCDBean> alist = new ArrayList<AudioCDBean>();
+    int audiocdID, audiocd_productID;
+    String artist, recordCompany;
+    String query;
+    
     @Override
     public boolean addAudioCD(AudioCDBean audioCD) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "insert into audiocd (artist, recordCompany, audiocd_productID) values (?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, audioCD.getArtist());
+            ps.setString(2, audioCD.getRecordCompany());
+            ps.setInt(3, audioCD.getAudiocd_productID());
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
     public boolean editAudioCD(AudioCDBean audioCD) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "update audiocd set artist = ?, recordCompany = ?, audiocd_productID = ? where audiocdID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, audioCD.getArtist());
+            ps.setString(2, audioCD.getRecordCompany());
+            ps.setInt(3, audioCD.getAudiocd_productID());
+            ps.setInt(4, audioCD.getAudiocdID());
+            ps.executeUpdate();
+            
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return false;
     }
 
     @Override
     public boolean deleteAudioCD(int audioCDID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            query = "delete from audiocd where audiocdID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, audioCDID);
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
 
     @Override
     public AudioCDBean getAudioCDById(int ID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from audiocd where audiocdID = ?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                
+                bean = new AudioCDBean();
+                
+                audiocdID = rs.getInt("audiocdID");
+                artist = rs.getString("artist");
+                recordCompany = rs.getString("recordCompany");
+                audiocd_productID = rs.getInt("audio_productID");
+                
+                bean.setArtist(artist);
+                bean.setAudiocdID(audiocdID);
+                bean.setAudiocd_productID(audiocd_productID);
+                bean.setRecordCompany(recordCompany);
+                
+            }
+            
+            connection.close();
+            return bean;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     @Override
     public ArrayList<AudioCDBean> getAllAudioCDByArtist(String artist) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from audiocd where artist = ?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, artist);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                
+                bean = new AudioCDBean();
+                
+                audiocdID = rs.getInt("audiocdID");
+                artist = rs.getString("artist");
+                recordCompany = rs.getString("recordCompany");
+                audiocd_productID = rs.getInt("audio_productID");
+                
+                bean.setArtist(artist);
+                bean.setAudiocdID(audiocdID);
+                bean.setAudiocd_productID(audiocd_productID);
+                bean.setRecordCompany(recordCompany);
+                
+                alist.add(bean);
+            }
+            
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     @Override
     public ArrayList<AudioCDBean> getAllAudioCDByRecordCompany(String recordCompany) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from audiocd where recordCompany = ?";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, recordCompany);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                
+                bean = new AudioCDBean();
+                
+                audiocdID = rs.getInt("audiocdID");
+                artist = rs.getString("artist");
+                recordCompany = rs.getString("recordCompany");
+                audiocd_productID = rs.getInt("audio_productID");
+                
+                bean.setArtist(artist);
+                bean.setAudiocdID(audiocdID);
+                bean.setAudiocd_productID(audiocd_productID);
+                bean.setRecordCompany(recordCompany);
+                
+                alist.add(bean);
+            }
+            
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     @Override
     public ArrayList<AudioCDBean> getAllAudioCD() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "select * from audiocd";
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                
+                bean = new AudioCDBean();
+                
+                audiocdID = rs.getInt("audiocdID");
+                artist = rs.getString("artist");
+                recordCompany = rs.getString("recordCompany");
+                audiocd_productID = rs.getInt("audio_productID");
+                
+                bean.setArtist(artist);
+                bean.setAudiocdID(audiocdID);
+                bean.setAudiocd_productID(audiocd_productID);
+                bean.setRecordCompany(recordCompany);
+                
+                alist.add(bean);
+            }
+            
+            connection.close();
+            return alist;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
     
 }

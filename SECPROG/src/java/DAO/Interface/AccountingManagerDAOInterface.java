@@ -11,15 +11,12 @@ package DAO.Interface;
  */
 
 import Beans.AccountingManagerBean;
+import Beans.ProductManagerBean;
 import java.util.ArrayList;
 
 public interface AccountingManagerDAOInterface {
   public boolean addAccountingManager (AccountingManagerBean accountingManager);
-  public boolean editAccountingManager (AccountingManagerBean accountingManager);  
-  public boolean deleteAccountingManager (int accountingManagerID);
-  public AccountingManagerBean getAccountingManagerByID  (int ID);
-  
-  /**public viewSales ();
+  /*public viewSales ();
   public viewSalesByProductType ();
   public viewSalesByYear ();
   public viewSalesByMonth ();

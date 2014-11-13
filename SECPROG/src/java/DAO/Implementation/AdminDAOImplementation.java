@@ -1,6 +1,7 @@
 package DAO.Implementation;
 
 import Beans.AccountBean;
+import Beans.AccountingManagerBean;
 import Beans.AdminBean;
 import Beans.ProductBean;
 import Beans.ProductManagerBean;
@@ -37,11 +38,6 @@ public class AdminDAOImplementation implements AdminDAOInterface {
 
     @Override
     public boolean addAdmin(AdminBean admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean editAdmin(int adminID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -122,66 +118,6 @@ public class AdminDAOImplementation implements AdminDAOInterface {
     }
 
     @Override
-    public boolean editProductManager(ProductManagerBean productManager) {
-        try {
-            Connector c = new Connector();
-            Connection connection = c.getConnection();
-            query = "update productmanager set prodmanager_accountID = ? prodType = ? where productmanagerID = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, productManager.getProdmanager_accountID());
-            ps.setString(2, productManager.getProdType());
-            ps.setInt(3, productManager.getProductmanagerID());
-            ps.executeUpdate();
-
-            connection.close();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    @Override
-    public ProductBean viewProduct(int ID) {
-        try {
-            Connector c = new Connector();
-            Connection connection = c.getConnection();
-            query = "select * from product where productID = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, ID);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
-                productID = resultSet.getInt("productID");
-                type = resultSet.getString("type");
-                title = resultSet.getString("title");
-                price = resultSet.getDouble("price");
-                summary = resultSet.getString("summary");
-                genre = resultSet.getString("genre");
-                year = resultSet.getInt("year");
-
-                prodbean = new ProductBean();
-
-                prodbean.setProductID(productID);
-                prodbean.setType(type);
-                prodbean.setTitle(title);
-                prodbean.setPrice(price);
-                prodbean.setSummary(summary);
-                prodbean.setGenre(genre);
-                prodbean.setYear(year);
-
-            }
-
-            return prodbean;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
     public void viewActivityLog() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -216,6 +152,16 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public AccountingManagerBean getAccountingManager(int ID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean addAccountingManager(AccountingManagerBean bean) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

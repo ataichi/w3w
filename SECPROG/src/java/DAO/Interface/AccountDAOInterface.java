@@ -15,6 +15,7 @@ public interface AccountDAOInterface {
     public ArrayList<AccountBean> getAccountByFirstName(String firstname);
     public ArrayList<AccountBean> getAccountByLastName(String lastname);
     public ArrayList<AccountBean> getAllAccounts();
+    public boolean deleteAccount(int accountID);
 
     /*
     public boolean isAdmin(String username, String password);

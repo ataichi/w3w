@@ -17,8 +17,9 @@ public interface MagazineManagerDAOInterface {
     public boolean addMagazine (MagazineBean magazine);
     public boolean editMagazine (MagazineBean magazine);
     public boolean deleteMagazine (MagazineBean magazine);
+    
     public MagazineBean getMagazine (int ID);
     public ArrayList<MagazineBean> viewAllMagazine();
     public boolean restockMagazine(int productID, int num);
-    public ArrayList<MagazineBean> searchMagazinebyTitle();
+    public ArrayList<MagazineBean> searchMagazinebyTitle(String title);
 }

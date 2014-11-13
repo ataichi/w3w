@@ -406,4 +406,21 @@ public class AccountDAOImplementation implements AccountDAOInterface {
         }
         return false;
     }
+
+    @Override
+    public boolean deleteAccount(int accountID) {
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            
+            String query = "delete from account where accountID=?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, accountID);
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }

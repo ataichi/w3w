@@ -34,24 +34,9 @@ public class AccountingManagerDAOImplementation implements AccountingManagerDAOI
             connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountingManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }
-
-    @Override
-    public boolean editAccountingManager(AccountingManagerBean accountingManager) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean deleteAccountingManager(int accountingManagerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public AccountingManagerBean getAccountingManagerByID(int ID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

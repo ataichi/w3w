@@ -20,5 +20,5 @@ public interface DVDManagerDAOInterface {
     public DVDBean getDVD (int ID);
     public ArrayList<DVDBean> viewAllDVD();
     public boolean restockDVD(int productID, int num);
-    public ArrayList<DVDBean> searchDVDbyTitle();
+    public ArrayList<DVDBean> searchDVDbyTitle(String title);
 }
