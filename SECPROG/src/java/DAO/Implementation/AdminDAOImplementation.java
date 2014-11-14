@@ -38,17 +38,95 @@ public class AdminDAOImplementation implements AdminDAOInterface {
 
     @Override
     public boolean addAdmin(AdminBean admin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+
+            Connection connection = c.getConnection();
+            String query = "insert into admin (admin_accountID) values (?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, admin.getAdmin_accountID());
+
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountingManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
     public AdminBean getAdminById(int adminID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "select * from admin where adminID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, adminID);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            int id, admin_accountID;
+
+            AdminBean bean = new AdminBean();
+
+            while (resultSet.next()) {
+                id = resultSet.getInt("adminID");
+                admin_accountID = resultSet.getInt("admin_accountID");
+
+                bean.setAdminID(id);
+                bean.setAdmin_accountID(admin_accountID);
+
+                System.out.println("hssere");
+
+            }
+            connection.close();
+            return bean;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 
     @Override
     public ArrayList<AdminBean> getAdminByFullName(String firstname, String lastname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "select adminID, admin_accountID from admin, account "
+                    + "where account.firstName = ? and account.lastName = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, firstname);
+            ps.setString(2, lastname);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            int id, admin_accountID;
+
+            ArrayList<AdminBean> alist = new ArrayList<AdminBean>();
+            AdminBean bean = new AdminBean();
+
+            while (resultSet.next()) {
+                id = resultSet.getInt("adminID");
+                admin_accountID = resultSet.getInt("admin_accountID");
+
+                bean.setAdminID(id);
+                bean.setAdmin_accountID(admin_accountID);
+
+                alist.add(bean);
+                System.out.println("hssere");
+
+            }
+            connection.close();
+            return alist;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 
     @Override
@@ -62,8 +140,10 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             ps.executeUpdate();
             connection.close();
             return true;
+
         } catch (SQLException ex) {
-            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminDAOImplementation.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -94,7 +174,8 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             return prodmngrbean;
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminDAOImplementation.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -111,8 +192,10 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             ps.executeUpdate();
             connection.close();
             return true;
+
         } catch (SQLException ex) {
-            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminDAOImplementation.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -133,7 +216,7 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             ResultSet resultSet = ps.executeQuery();
             ArrayList<AccountBean> list = new ArrayList<AccountBean>();
             AccountBean bean = new AccountBean();
-            
+
             while (resultSet.next()) {
                 bean = new AccountBean();
                 bean.setAccountID(resultSet.getInt("accountID"));
@@ -149,19 +232,64 @@ public class AdminDAOImplementation implements AdminDAOInterface {
             return list;
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminDAOImplementation.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     @Override
     public AccountingManagerBean getAccountingManager(int ID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "select * from accountingmanager where accountingmanagerID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            int accountingManagerID, accountingManager_accountID;
+
+            AccountingManagerBean bean = new AccountingManagerBean();
+
+            while (resultSet.next()) {
+                accountingManagerID = resultSet.getInt("accountingmanagerID");
+                accountingManager_accountID = resultSet.getInt("accounting_accountID");
+
+                bean.setAccountingManagerID(accountingManagerID);
+                bean.setAccountingManager_accountID(accountingManager_accountID);
+
+                System.out.println("hssere");
+
+            }
+            connection.close();
+            return bean;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
     }
 
     @Override
-    public boolean addAccountingManager(AccountingManagerBean bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addAccountingManager(AccountingManagerBean accountingManager) {
+        try {
+            Connector c = new Connector();
+
+            Connection connection = c.getConnection();
+            String query = "insert into accountingmanager (accounting_accountID) values (?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, accountingManager.getAccountingManager_accountID());
+            
+            ps.executeUpdate();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountingManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
 }
