@@ -31,10 +31,6 @@ public class AdminDAOImplementation implements AdminDAOInterface {
     int year;
     String query;
 
-    @Override
-    public AdminBean getAdmin(int ID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public boolean addAdmin(AdminBean admin) {

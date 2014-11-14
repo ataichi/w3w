@@ -8,7 +8,6 @@ import Beans.ProductBean;
 import java.util.ArrayList;
 
 public interface AdminDAOInterface {
-    public AdminBean getAdmin (int ID);
     public boolean addAdmin(AdminBean admin);
     public AdminBean getAdminById(int adminID);
     public ArrayList<AdminBean> getAdminByFullName(String firstname, String lastname);
