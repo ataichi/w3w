@@ -29,6 +29,7 @@
             <div id="banner"> <a href="home.html"><img src="books.jpg"></a> </div>
         </header>
         <nav>
+               
             <ul>
                 <li><a href="customerHOME.jsp">Home</a>    </li>
                 <li><a href="#">Category</a>
@@ -39,7 +40,6 @@
                         <li><a href="#">DVDs</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Register</a>   </li>
                 <li><a href='#'>Account
                         <ul>
                             <li><a href='customerAccount.jsp'>Edit Account</a></li>
@@ -50,6 +50,6 @@
         </nav>
 
 
-       <h1>Hello <% out.print(homeuser.getUsername());%> !</h1>
+    
     </body>
 </html>

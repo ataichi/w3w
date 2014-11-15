@@ -31,7 +31,7 @@
     <body>
 
         <header>
-            <div id="banner"> <a href="home.html"><img src="books.jpg"></a> </div>
+            <div id="banner"> <a href="customerHOME.jsp"><img src="books.jpg"></a> </div>
         </header>
         
         <nav>
@@ -54,6 +54,45 @@
             </ul>
         </nav>
 
+        
+
+        <div id='actions'>
+            <br>
+            <br>
+            <a href='customerBilling.jsp'>Manage Billing Information</a>
+            <br/>
+            <br>
+            
+            <a href='customerPayments.jsp'>Manage Payment Information</a>
+            <br/>
+            <br>
+            <a href='customerTransactions'>View Transactions</a>
+            <br/>
+        </div>
+
+        <div id='editAccount'>
+            <form action='EditCustomerAccountServlet'>
+                First Name:* &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type='text' id='editfirst' name='editfirst' value='<% out.println(homeuser.getFirstName()); %>' onblur='fnameCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                Middle Name* &nbsp;
+                <input type='text' id='editmiddle' name='editmiddle' value='<% out.println(homeuser.getMiddleInitial()); %>' onblur='fnameCheck();' onfocus='backWhite(this)'/>
+                <br/>
+                Last Name:* &nbsp;&nbsp;&nbsp;&nbsp;
+                <input id='editlast' type='text' name="editlast" value='<% out.println(homeuser.getLastName()); %>' onblur='lnameCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                Username:*  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id='edituser' type='text' name="edituser" value='<% out.println(homeuser.getUsername()); %>' onblur='unameCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                Email:*    &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id='editemail' type='email' name="editemail" value='<% out.println(homeuser.getEmailAdd());%>' onblur='emailCheck();' onfocus='backWhite(this);'/>
+                <br/><br/>
+
+                <input type='submit' id='save' value='Save Changes'/>
+            </form>
+            <a href='customerAccount.jsp'><button>Cancel</button></a>
+
+        </div>
 
     </body>
 </html>
