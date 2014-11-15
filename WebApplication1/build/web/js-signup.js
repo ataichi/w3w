@@ -4,6 +4,20 @@
  * and open the template in the editor.
  */
 
+$(document).ready(function(){
+   $('#signupform_productmanager').css({
+       "position":"center",
+       "backgroud-color":"bisque",
+       "margin-top":"100px",
+       "margin-left":"300px"
+   }); 
+   $('#signupform_accountingmanager').css({
+       "position":"center",
+       "backgroud-color":"bisque",
+       "margin-top":"100px",
+       "margin-left":"20px"
+   }); 
+});
 function logcheck() {
     var user = usernameCheck();
     var pass = passwordCheck();

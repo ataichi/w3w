@@ -6,18 +6,17 @@ $(document).ready(function () {
 
     $('#actions').css({
         "position": "absolute",
-        "background-color": "yellow",
-        "margin-top": "-15px",
-        "margin-left": "-10px",
-        "height": "500px",
+        "background-color": "#FFFFCC",
+        "margin-top":"100px",
+        "height": "450px",
         "width": "150px"
     });
 
     $('#editAccount').css({
         "position": "absolute",
         "background-color": "bisque",
-        "margin-left": "140px",
-        "margin-top": "-15px",
+        "margin-top":"100px",
+        "margin-left": "151px",
         "height": "500px",
         "width": "400px"
     });

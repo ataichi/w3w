@@ -57,8 +57,8 @@ public class AccountDAOImplementation implements AccountDAOInterface {
             ps.setString(4, accountBean.getUsername());
             ps.setString(5, accountBean.getPassword());
             ps.setString(6, accountBean.getEmailAdd());
-            ps.setBoolean(7, accountBean.getLocked());
-            ps.setString(8, accountBean.getAccountType());
+            ps.setString(7, accountBean.getAccountType());
+            ps.setBoolean(8, accountBean.getLocked());
             ps.setInt(9, accountBean.getAccountID());
             ps.executeUpdate();
             connection.close();
@@ -66,7 +66,6 @@ public class AccountDAOImplementation implements AccountDAOInterface {
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return false;
     }
 

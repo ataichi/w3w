@@ -1,6 +1,7 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
-    Document   : customerPayments
-    Created on : Nov 15, 2014, 5:27:55 PM
+    Document   : productmanagerAccount
+    Created on : Nov 15, 2014, 10:02:34 PM
     Author     : Giodee
 --%>
 
@@ -26,46 +27,35 @@
         <link href='http://fonts.googleapis.com/css?family=Istok+Web|Exo+2|Over+the+Rainbow' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
-        <title>Edit Payment Information</title>
+        <title>Edit Account</title>
     </head>
     <body>
-
         <header>
-            <div id="banner"> <a href="home.html"><img src="books.jpg"></a> </div>
+            <div id="banner"> <a href="productmanagerHOME.jsp"><img src="books.jpg"></a> </div>
         </header>
+
         <nav>
             <ul>
-                <li><a href="customerHOME.jsp">Home</a>    </li>
-                <li><a href="#">Category</a>
+                <li><a href="productmangerHOME.jsp">Home</a>    </li>
+                <li><a href='#'>Account</a>
                     <ul>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Magazines</a></li>
-                        <li><a href="#">Audio CDs</a></li>
-                        <li><a href="#">DVDs</a></li>
+                        <li><a href='productmanagerAccount.jsp'>Edit Account</a></li>
+                        <li><a href='#'>Log out</a></li>
                     </ul>
-                </li>
-                <li><a href="#">Register</a>   </li>
-                <li><a href='#'>Account
-                        <ul>
-                            <li><a href='customerAccount.jsp'>Edit Account</a></li>
-                            <li><a href='#'>Log out</a></li>
-                        </ul>
                 </li>
             </ul>
         </nav>
 
+        
         <div id='actions'>
             <br>
             <br>
-            <a href='customerBilling.jsp'>Manage Billing Information</a>
+            <a href='addproduct.jsp'>Add Product</a>
             <br/>
             <br>
-
-            <a href='customerPayments.jsp'>Manage Payment Information</a>
-            <br/>
-            <br>
-            <a href='customerTransactions.jsp'>View Transactions</a>
-            <br/>
+            
+            arrange item
         </div>
+        
     </body>
 </html>

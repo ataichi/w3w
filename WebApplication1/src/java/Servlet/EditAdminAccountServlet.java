@@ -6,15 +6,11 @@
 package Servlet;
 
 import Beans.AccountBean;
-import Beans.AccountingManagerBean;
 import DAO.Implementation.AccountDAOImplementation;
-import DAO.Implementation.AccountingManagerDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
-import DAO.Interface.AccountingManagerDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,8 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Giodee
  */
-@WebServlet(name = "AccountingSignupServlet", urlPatterns = {"/AccountingSignupServlet"})
-public class AccountingSignupServlet extends HttpServlet {
+public class EditAdminAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,49 +34,67 @@ public class AccountingSignupServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            AccountBean account = new AccountBean();
-            AccountingManagerBean accountingManager = new AccountingManagerBean();
-            AccountDAOInterface userdao = new AccountDAOImplementation();
-            AccountingManagerDAOInterface amdao = new AccountingManagerDAOImplementation();
-
-            String firstname = request.getParameter("fname");
-            String lastname = request.getParameter("lname");
-            String mInitial = request.getParameter("mname");
-            String email = request.getParameter("email1");
-            String username = request.getParameter("uname");
-            String pass1 = request.getParameter("pass1");
-            boolean checkAccount, checkAccountingManager;
-            boolean locked=false;
+  HttpSession session = request.getSession();
+            AccountBean account = (AccountBean) session.getAttribute("homeadmin");
             
-            account.setFirstName(firstname);
-            account.setLastName(lastname);
-            account.setMiddleInitial(mInitial);
-            account.setPassword(pass1);
-            account.setEmailAdd(email);
-            account.setUsername(username);
-            account.setAccountType("accounting manager");
-            account.setLocked(locked);
+            AccountBean bean = new AccountBean();
+                 String firstName, lastName, middleInitial, username, emailAdd;
             
-            checkAccount = userdao.addAccount(account);
-            
-            int accountingmanager_accountID = userdao.getUserByUsername(username).getAccountID();
-            
-            accountingManager.setAccountingManager_accountID(accountingmanager_accountID);
-            checkAccountingManager = amdao.addAccountingManager(accountingManager);
-            
-            if(checkAccount && checkAccountingManager){
-                response.sendRedirect("adminHOME.jsp");
-                //successful
+            if(request.getParameter("editfirst").isEmpty()){
+                firstName=account.getFirstName();
             }else{
-                response.sendRedirect("signupfail.jsp");
+                firstName = request.getParameter("editfirst");
             }
-
-        } finally {
-            out.close();
+            
+            if(request.getParameter("editlast").isEmpty()){
+                lastName = account.getLastName();
+            }else{
+                lastName = request.getParameter("editlast");
+            }
+            
+            if(request.getParameter("editmiddle").isEmpty()){
+                middleInitial = account.getMiddleInitial();
+            }else{
+                middleInitial = request.getParameter("editmiddle");
+            }
+            
+            if(request.getParameter("edituser").isEmpty()){
+                username = account.getUsername();
+            }else{
+                username = request.getParameter("edituser");
+            }
+            
+            if(request.getParameter("editemail").isEmpty()){
+                emailAdd = account.getEmailAdd();
+            }else{
+                emailAdd = request.getParameter("editemail");
+            }
+            boolean locked=false;
+            String password=account.getPassword();
+            int id=account.getAccountID();
+            AccountDAOInterface accountdao = new AccountDAOImplementation();
+            bean.setAccountID(id);
+            bean.setFirstName(firstName);
+            bean.setLastName(lastName);
+            bean.setMiddleInitial(middleInitial);
+            bean.setUsername(username);
+            bean.setEmailAdd(emailAdd);
+            bean.setLocked(locked);
+            bean.setPassword(password);
+            bean.setAccountType("admin");
+            
+            boolean edit = accountdao.updateAccount(bean);
+            if(edit){
+                session.setAttribute("homeadmin", bean);
+                response.sendRedirect("adminHOME.jsp");
+            }else{
+                session.setAttribute("homeadmin", bean);
+                response.sendRedirect("adminAccount.jsp");
+            }
+            
+            
         }
     }
 
