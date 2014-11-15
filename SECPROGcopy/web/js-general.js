@@ -29,7 +29,6 @@ $(document).ready(function () {
     $('#navbar').css({
         "padding-top": "75px",
         "padding-left": "1000px",
-        "background-color": "#FD97BE",
         "text-align": "left",
         "height": "40px"
     });
@@ -51,4 +50,12 @@ $(document).ready(function () {
         "font-weight": "bold"
     });
 
+
+    $('#actions').css({
+        //    "padding-left":"-20px",
+        "background-color": "bisque",
+        "margin-top": "80px",
+        "height": "500px",
+        "width": "150px",
+        "position": "absolute"});
 });//end of ready

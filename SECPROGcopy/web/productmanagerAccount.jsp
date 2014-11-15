@@ -1,11 +1,15 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%-- 
+    Document   : productmanagerAccount
+    Created on : Nov 15, 2014, 10:02:34 PM
+    Author     : Giodee
+--%>
 
 <%@page import="Beans.AccountBean"%>
-<%@page import="Beans.CustomerBean"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     AccountBean homeuser = (AccountBean) session.getAttribute("homeuser");
 %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="jquery-2.1.0.min.js" type="text/javascript"></script>
         <script src="js-general.js" type="text/javascript"></script>
-        <script src="js-.js" type="text/javascript"></script>
+        <script src="js-edit.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="wadesign.css">
         <link rel="stylesheet" type="text/css" href="category.css">
         <link rel="stylesheet" type="text/css" href="style4.css">
@@ -23,47 +27,35 @@
         <link href='http://fonts.googleapis.com/css?family=Istok+Web|Exo+2|Over+the+Rainbow' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
-        <title>Customer Home Page</title>
+        <title>Edit Account</title>
     </head>
     <body>
         <header>
-            <div id="banner"> <a href="home.html"><img src="books.jpg"></a> </div>
+            <div id="banner"> <a href="productmanagerHOME.jsp"><img src="books.jpg"></a> </div>
         </header>
+
         <nav>
-               
             <ul>
-                <li><a href="customerHOME.jsp">Home</a>    </li>
-                <li><a href="#">Category</a>
+                <li><a href="productmangerHOME.jsp">Home</a>    </li>
+                <li><a href='#'>Account</a>
                     <ul>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Magazines</a></li>
-                        <li><a href="#">Audio CDs</a></li>
-                        <li><a href="#">DVDs</a></li>
+                        <li><a href='productmanagerAccount.jsp'>Edit Account</a></li>
+                        <li><a href='#'>Log out</a></li>
                     </ul>
-                </li>
-                <li><a href='#'>Account
-                        <ul>
-                            <li><a href='customerAccount.jsp'>Edit Account</a></li>
-                            <li><a href='#'>Log out</a></li>
-                        </ul>
                 </li>
             </ul>
         </nav>
+
         
         <div id='actions'>
             <br>
             <br>
-            <a href='customerBilling.jsp'>Manage Billing Information</a>
+            <a href='addproduct.jsp'>Add Product</a>
             <br/>
             <br>
             
-            <a href='customerPayments.jsp'>Manage Payment Information</a>
-            <br/>
-            <br>
-            <a href='customerTransactions.jsp'>View Transactions</a>
-            <br/>
+            arrange item
         </div>
-
-    
+        
     </body>
 </html>
