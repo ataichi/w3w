@@ -48,6 +48,8 @@
         </nav>
 
         <div id="actions">
+            <br>
+            <br>
             <a href="signup_productmanager.html">Add Product Manager</a>
             <br>
             <br>
