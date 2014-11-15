@@ -1,11 +1,8 @@
-
 <%@page import="Beans.AccountBean"%>
-<%@page import="Beans.CustomerBean"%>
-
-<%
-    AccountBean homeuser = (AccountBean) session.getAttribute("homeuser");
-%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    AccountBean homeuser = (AccountBean) session.getAttribute("homeadmin");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,8 +10,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="jquery-2.1.0.min.js" type="text/javascript"></script>
+        <script src="js-edit.js" type="text/javascript"></script>
         <script src="js-general.js" type="text/javascript"></script>
-        <script src="js-.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="wadesign.css">
         <link rel="stylesheet" type="text/css" href="category.css">
         <link rel="stylesheet" type="text/css" href="style4.css">
@@ -23,47 +20,41 @@
         <link href='http://fonts.googleapis.com/css?family=Istok+Web|Exo+2|Over+the+Rainbow' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
-        <title>Customer Home Page</title>
+
+        <title>Admin Home</title>
+        
     </head>
     <body>
+
+
         <header>
-            <div id="banner"> <a href="home.html"><img src="books.jpg"></a> </div>
+            <div id="banner"> <a href="adminHOME.jsp"><img src="books.jpg"></a> </div>
         </header>
-        <nav>
-               
+
+<nav>
             <ul>
-                <li><a href="customerHOME.jsp">Home</a>    </li>
-                <li><a href="#">Category</a>
-                    <ul>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Magazines</a></li>
-                        <li><a href="#">Audio CDs</a></li>
-                        <li><a href="#">DVDs</a></li>
-                    </ul>
-                </li>
+                <li><a href="adminHOME.jsp">Home</a>    </li>
                 <li><a href='#'>Account
                         <ul>
-                            <li><a href='customerAccount.jsp'>Edit Account</a></li>
+                            <li><a href='adminAccount.jsp'>Edit Account</a></li>
                             <li><a href='#'>Log out</a></li>
                         </ul>
                 </li>
-            </ul>
         </nav>
-        
-        <div id='actions'>
-            <br>
-            <br>
-            <a href='customerBilling.jsp'>Manage Billing Information</a>
-            <br/>
-            <br>
-            
-            <a href='customerPayments.jsp'>Manage Payment Information</a>
-            <br/>
-            <br>
-            <a href='customerTransactions.jsp'>View Transactions</a>
-            <br/>
-        </div>
 
-    
+        <div id="actions">
+            <br>
+            <br>
+            <a href="signup_productmanager.html">Add Product Manager</a>
+            <br>
+            <br>
+            <a href="signup_accountingmanager.html">Add Accounting Manager</a>
+            <br>
+            <br>
+            <a href="unlock_account.html">Unlock Account</a>
+            <br>
+            <br>
+            <a href="viewlogs.html">View Activity Log </a>
+        </div>
     </body>
 </html>
