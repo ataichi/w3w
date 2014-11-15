@@ -75,6 +75,6 @@
 
                 <input type='submit' id='save' value='Save Changes'/>
             </form>
-            <a href='productmanagerAccount.jsp'><button>Cancel</button></a>
+            <a href='productmanagerHOME.jsp'><button>Cancel</button></a>
     </body>
 </html>

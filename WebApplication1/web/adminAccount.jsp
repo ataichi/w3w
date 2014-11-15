@@ -79,7 +79,7 @@
 
                 <input type='submit' id='save' value='Save Changes'/>
             </form>
-            <a href='adminAccount.jsp'><button>Cancel</button></a>
+            <a href='adminHOME.jsp'><button>Cancel</button></a>
 
         </div>
         
