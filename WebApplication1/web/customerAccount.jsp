@@ -53,9 +53,6 @@
                 </li>
             </ul>
         </nav>
-
-        
-
         <div id='actions'>
             <br>
             <br>
@@ -66,7 +63,7 @@
             <a href='customerPayments.jsp'>Manage Payment Information</a>
             <br/>
             <br>
-            <a href='customerTransactions'>View Transactions</a>
+            <a href='customerTransactions.jsp'>View Transactions</a>
             <br/>
         </div>
 
