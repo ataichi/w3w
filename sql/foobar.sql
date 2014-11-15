@@ -313,6 +313,7 @@ CREATE TABLE `product` (
   `summary` varchar(45) NOT NULL,
   `genre` varchar(45) NOT NULL,
   `year` int(11) NOT NULL,
+  `stocks` int(11) NOT NULL,
   PRIMARY KEY (`productID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

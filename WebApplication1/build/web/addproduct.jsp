@@ -66,35 +66,74 @@
             Add <%out.println(productManager.getProdType());%>:
             <br/><br/>
             <form action="AddProductServlet">
-                Title:* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type='text' id='productTitle' name='productTitle' onfocus='backWhite(this);'/>
-                <br/>
-                Price:* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type='text' id='productPrice' name='productPrice' onfocus='backWhite(this);'/>
-                <br/>
-                Summary: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type='text' id='productSummary' name='productSummary' onfocus='backWhite(this);'/>
-                <br/>
-                Genre: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;
-                <input type='text' id='productGenre' name='productGenre' onfocus='backWhite(this);'/>
-                <br/>
-                Year: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type='text' id='productYear' name='productYear' onfocus='backWhite(this);'/>       
-                <br/>
+                <table>
+                    <tr>
+                        <td>Title:*</td>
+                        <td><input type='text' id='productTitle' name='productTitle' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Price:* </td>
+                        <td>
+                            <input type='text' id='productPrice' name='productPrice' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Summary:
+                        </td>
+                        <td>
+                            <input type='text' id='productSummary' name='productSummary' onfocus='backWhite(this);'/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Genre:
+                        </td>
+                        <td>
+                            <input type='text' id='productGenre' name='productGenre' onfocus='backWhite(this);'/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Year:
+                        </td>
+                        <td>
+                            <input type='text' id='productYear' name='productYear' onfocus='backWhite(this);'/>       
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Stocks:
+                        </td>
+                        <td>
+                            <input type='text' id='productStocks' name='productStocks' onfocus='backWhite(this);'/>
+
+                        </td>
+                    </tr>
 
 
-                <%if (productManager.getProdType().equals("Audio CD")) {  %>
-                Artist: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type='text' id='cdArtist' name='cdArtist' onfocus='backWhite(this);'/>
-                <br/>
-                Record Company: <input type='text' id='cdRecord' name ='cdRecord' onfocus='backWhite(this);'/>
-                <br/>
+                    <%if (productManager.getProdType().equals("Audio CD")) {  %>
+                    <br/>
+                    <tr>
+                        <td>Artist</td>
+                    <td>
+                    <input type='text' id='cdArtist' name='cdArtist' onfocus='backWhite(this);'/>    
+                    </td>
+                    <tr>
+                        <td>
+                            Record Company:
+                        </td>
+                        <td>
+                            <input type='text' id='cdRecord' name ='cdRecord' onfocus='backWhite(this);'/>
+                 
+                        </td>
+                    </tr>
 
-                <%}%>
+                    <%}%>
+                </table>
+
                 <input type='submit' value='Submit'/>
             </form>
 
