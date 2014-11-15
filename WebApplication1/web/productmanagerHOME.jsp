@@ -51,7 +51,7 @@
             <br/>
             <br/>
             
-            <a href="signup_productmanager.html">Add Product</a>
+            <a href="addproduct.html">Add Product</a>
             <br>
             <br>
            <br>

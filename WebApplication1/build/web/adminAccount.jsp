@@ -57,6 +57,8 @@
             <br>
             <br>
             <a href="viewlogs.html">View Activity Log </a>
+            <br/><br/>
+            <a href="unlock_account.html">Unlock Account</a>
         </div>
         
                 <div id='editAccount'>
