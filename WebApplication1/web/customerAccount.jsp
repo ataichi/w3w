@@ -28,19 +28,43 @@
                 <a href="customerAccount.jsp">Account</a> 
             </div>
         </div>
+
         <% AccountBean homeuser = (AccountBean) session.getAttribute("homeuser"); %>
 
         <div id='actions'>
-        <h1>Hello <% out.print(homeuser.getUsername());%> !</h1>
+            <h1>Hello <% out.print(homeuser.getUsername());%> !</h1>
 
-        <a href='customerAccount.jsp'>General</a>
-        <br/>
-        <a href='customerBilling.jsp'>Manage Billing Information</a>
-        <br/>
-        <a href='customerPayments.jsp'>Manage Payment Information</a>
-        <br/>
-        <a href='customerTransactions'>View Transactions</a>
-        <br/>
+            <a href='customerAccount.jsp'>General</a>
+            <br/>
+            <a href='customerBilling.jsp'>Manage Billing Information</a>
+            <br/>
+            <a href='customerPayments.jsp'>Manage Payment Information</a>
+            <br/>
+            <a href='customerTransactions'>View Transactions</a>
+            <br/>
+        </div>
+
+        <div id='editAccount'>
+            <form action='EditServlet'>
+                First Name:* &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type='text' id='editfirst' name='editfirst' value='<% out.println(homeuser.getFirstName()); %>' onblur='fnameCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                Middle Name* &nbsp;
+                <input type='text' id='editmiddle' name='editmiddle' value='<% out.println(homeuser.getMiddleInitial()); %>' onblur='fnameCheck();' onfocus='backWhite(this)'/>
+                <br/>
+                Last Name:* &nbsp;&nbsp;&nbsp;&nbsp;
+                <input id='editlast' type='text' name="editlast" value='<% out.println(homeuser.getLastName()); %>' onblur='lnameCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                Username:*  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id='edituser' type='text' name="edituser" value='<% out.println(homeuser.getUsername()); %>' onblur='unameCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                Email:*    &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id='editemail' type='email' name="editemail" value='<% out.println(homeuser.getEmailAdd());%>' onblur='emailCheck();' onfocus='backWhite(this);'/>
+                <br/>
+                <input type='submit' id='save' value='Save Changes'/>
+            </form>
+            <a href='customerAccount.jsp'><button>Cancel</button></a>
+
         </div>
     </body>
 </html>
