@@ -26,6 +26,8 @@
 
         <div id="content">
             <div id="navbar">
+                <a href="adminHOME.jsp">HOME</a> ||
+                <a href="adminAccount.jsp">Account </a>
             </div>
         </div>
 
