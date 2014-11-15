@@ -49,7 +49,7 @@
         <div id="actions">
             <br/>
             <br/>
-            <a href="#.html">Add Product</a>
+            <a href="addproduct.jsp">Add Product</a>
             <br>
             <br>
             <br>
