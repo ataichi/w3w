@@ -12,6 +12,13 @@ $(document).ready(function () {
         "margin-right": "-100px",
         "position": "absolute"
     });
+    
+    $('#banner').css({
+        "padding-top": "-10px",
+        "padding-left": "-10px",
+        "width": "200px",
+        "height": "40px"
+    });
 
     $('#logoimg').css({
         "height": "100px",
