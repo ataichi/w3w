@@ -50,4 +50,12 @@ $(document).ready(function () {
         "font-weight": "bold"
     });
 
+
+    $('#actions').css({
+        //    "padding-left":"-20px",
+        "background-color": "bisque",
+        "margin-top": "80px",
+        "height": "500px",
+        "width": "150px",
+        "position": "absolute"});
 });//end of ready
