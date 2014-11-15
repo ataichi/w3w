@@ -45,7 +45,7 @@
         </div>
 
         <div id='editAccount'>
-            <form action='EditServlet'>
+            <form action='EditCustomerAccountServlet'>
                 First Name:* &nbsp;&nbsp;&nbsp;&nbsp;
                 <input type='text' id='editfirst' name='editfirst' value='<% out.println(homeuser.getFirstName()); %>' onblur='fnameCheck();' onfocus='backWhite(this);'/>
                 <br/>
@@ -60,7 +60,8 @@
                 <br/>
                 Email:*    &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id='editemail' type='email' name="editemail" value='<% out.println(homeuser.getEmailAdd());%>' onblur='emailCheck();' onfocus='backWhite(this);'/>
-                <br/>
+                <br/><br/>
+                
                 <input type='submit' id='save' value='Save Changes'/>
             </form>
             <a href='customerAccount.jsp'><button>Cancel</button></a>
