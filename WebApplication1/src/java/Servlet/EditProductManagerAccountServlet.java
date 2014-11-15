@@ -11,6 +11,7 @@ import DAO.Interface.AccountDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Giodee
  */
-public class EditAdminAccountServlet extends HttpServlet {
+@WebServlet(name = "EditProductManagerAccountServlet", urlPatterns = {"/EditProductManagerAccountServlet"})
+public class EditProductManagerAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +38,12 @@ public class EditAdminAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+
             HttpSession session = request.getSession();
-            AccountBean account = (AccountBean) session.getAttribute("homeadmin");
+            AccountBean account = (AccountBean) session.getAttribute("homeproduct");
 
             AccountBean bean = new AccountBean();
+
             String firstName, lastName, middleInitial, username, emailAdd;
 
             if (request.getParameter("editfirst").isEmpty()) {
@@ -83,15 +87,15 @@ public class EditAdminAccountServlet extends HttpServlet {
             bean.setEmailAdd(emailAdd);
             bean.setLocked(locked);
             bean.setPassword(password);
-            bean.setAccountType("admin");
+            bean.setAccountType("product manager");
 
             boolean edit = accountdao.updateAccount(bean);
             if (edit) {
-                session.setAttribute("homeadmin", bean);
-                response.sendRedirect("adminHOME.jsp");
+                session.setAttribute("homeproduct", bean);
+                response.sendRedirect("productmanagerHOME.jsp");
             } else {
-                session.setAttribute("homeadmin", bean);
-                response.sendRedirect("adminAccount.jsp");
+                session.setAttribute("homeproduct", bean);
+                response.sendRedirect("productmanagerAccount.jsp");
             }
 
         }

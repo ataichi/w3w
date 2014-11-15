@@ -37,7 +37,7 @@
         </header>
         <nav>
             <ul>
-                <li><a href="home.html">Home</a>    </li>
+                <li><a href="adminHOME.jsp">Home</a>    </li>
                 <li><a href='#'>Account
                         <ul>
                             <li><a href='adminAccount.jsp'>Edit Account</a></li>
