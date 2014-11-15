@@ -58,6 +58,14 @@
                 color: red;
                 font-weight:bold;
             }
+
+            #actions {
+                padding-top:150px;
+                padding-left:-10px;
+
+                background-color: bisque;
+                height: 30px;
+            }
         </style>
 
 
@@ -71,11 +79,13 @@
             </div>
         </div>
 
-        
-        <a href="signup_productmanager.html">Add Product Manager</a>
-        <br>
-        <a href="signup_accountingmanager.html">Add Accounting Manager</a>
-        <br>
-        <a href="viewlogs.html">View Activity Log </a>
+        <div id="actions">
+            <a href="signup_productmanager.html">Add Product Manager</a>
+            <br>
+            <a href="signup_accountingmanager.html">Add Accounting Manager</a>
+            <br>
+            <a href="viewlogs.html">View Activity Log </a>
+
+        </div>
     </body>
 </html>
