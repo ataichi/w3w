@@ -11,8 +11,66 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="jquery-2.1.0.min.js" type="text/javascript"></script>
         <script src="signupcheck.js" type="text/javascript"></script>
+           <style type="text/css">
+            #logo {
+                float:left;
+                height:50px;
+                width:60px;
+                margin-left:10px;
+                margin-right:-100px;
+                margin-top:10px;
+                position: absolute;
+            }
+
+            #logoimg {
+                height:100px;
+                width:auto;
+            }
+
+            #content{
+                background-color: #FFFFF;
+                margin-left:-10px;
+                margin-right:-10px;
+                margin-top:-10px;
+                height: 130px;
+            }
+
+            #navbar {
+                padding-top: 75px;
+                padding-left: 1000px;
+                background-color:#FD97BE;
+                text-align: left;
+                height: 40px;
+            }
+
+            #navbar li {
+                list-style-type: none;
+            }
+
+            #navbar a {
+                color: blueviolet;
+                text-decoration: none;
+                font-family:Arial;
+                font-size: 20px;
+                padding: 30px;
+            }	
+
+            #navbar a:hover{ 
+                color: red;
+                font-weight:bold;
+            }
+        </style>
+    
     </head>
     <body>
+
+        <div id="logo"><img id="logoimg" src="images/logo.png"/></div>
+
+        <div id="content">
+            <div id="navbar">
+            </div>
+        </div>
+    <center>
         <form id="signform" name="signin" action="SignupServlet" onsubmit="return signcheck(this);" method="post">
             <table>
                 <tr>
@@ -107,7 +165,8 @@ and open the template in the editor.
                 </tr>
             </table>
         </form>
+    </center>
 
 
-    </body>
+</body>
 </html>
