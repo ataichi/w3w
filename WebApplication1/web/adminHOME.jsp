@@ -37,18 +37,18 @@
         <header>
             <div id="banner"> <a href="adminHOME.jsp"><img src="books.jpg"></a> </div>
         </header>
-<!--
+
 <nav>
             <ul>
                 <li><a href="adminHOME.jsp">Home</a>    </li>
                 <li><a href='#'>Account
                         <ul>
-                            <li><a href='customerAccount.jsp'>Edit Account</a></li>
+                            <li><a href='adminAccount.jsp'>Edit Account</a></li>
                             <li><a href='#'>Log out</a></li>
                         </ul>
                 </li>
         </nav>
--->
+
         <div id="actions">
             <a href="signup_productmanager.html">Add Product Manager</a>
             <br>
@@ -57,7 +57,6 @@
             <br>
             <br>
             <a href="viewlogs.html">View Activity Log </a>
-
         </div>
 
 

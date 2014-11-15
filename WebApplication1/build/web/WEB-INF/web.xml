@@ -4,9 +4,17 @@
         <servlet-name>EditCustomerAccountServlet</servlet-name>
         <servlet-class>Servlet.EditCustomerAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditAdminAccountServlet</servlet-name>
+        <servlet-class>Servlet.EditAdminAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EditCustomerAccountServlet</servlet-name>
         <url-pattern>/EditCustomerAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAdminAccountServlet</servlet-name>
+        <url-pattern>/EditAdminAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
