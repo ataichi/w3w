@@ -51,7 +51,7 @@ public class AccountingSignupServlet extends HttpServlet {
             String firstname = request.getParameter("fname");
             String lastname = request.getParameter("lname");
             String mInitial = request.getParameter("mname");
-            String email = request.getParameter("email");
+            String email = request.getParameter("email1");
             String username = request.getParameter("uname");
             String pass1 = request.getParameter("pass1");
             boolean checkAccount, checkAccountingManager;
