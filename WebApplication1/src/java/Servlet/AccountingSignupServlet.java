@@ -9,8 +9,10 @@ import Beans.AccountBean;
 import Beans.AccountingManagerBean;
 import DAO.Implementation.AccountDAOImplementation;
 import DAO.Implementation.AccountingManagerDAOImplementation;
+import DAO.Implementation.AdminDAOImplementation;
 import DAO.Interface.AccountDAOInterface;
 import DAO.Interface.AccountingManagerDAOInterface;
+import DAO.Interface.AdminDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -46,17 +48,16 @@ public class AccountingSignupServlet extends HttpServlet {
             AccountBean account = new AccountBean();
             AccountingManagerBean accountingManager = new AccountingManagerBean();
             AccountDAOInterface userdao = new AccountDAOImplementation();
-            AccountingManagerDAOInterface amdao = new AccountingManagerDAOImplementation();
-
+            AdminDAOInterface adao = new AdminDAOImplementation();
+            
             String firstname = request.getParameter("fname");
             String lastname = request.getParameter("lname");
             String mInitial = request.getParameter("mname");
             String email = request.getParameter("email1");
             String username = request.getParameter("uname");
             String pass1 = request.getParameter("pass1");
-            boolean checkAccount, checkAccountingManager;
-            boolean locked=false;
-            
+            boolean locked = false;
+
             account.setFirstName(firstname);
             account.setLastName(lastname);
             account.setMiddleInitial(mInitial);
@@ -65,18 +66,20 @@ public class AccountingSignupServlet extends HttpServlet {
             account.setUsername(username);
             account.setAccountType("accounting manager");
             account.setLocked(locked);
+
+            int accountingmanager_accountID;
             
-            checkAccount = userdao.addAccount(account);
-            
-            int accountingmanager_accountID = userdao.getUserByUsername(username).getAccountID();
-            
-            accountingManager.setAccountingManager_accountID(accountingmanager_accountID);
-            checkAccountingManager = amdao.addAccountingManager(accountingManager);
-            
-            if(checkAccount && checkAccountingManager){
+            boolean addUser = userdao.addAccount(account);
+            if(addUser){
+                accountingmanager_accountID = userdao.getUserByUsername(request.getParameter("uname")).getAccountID();
+                accountingManager.setAccountingManager_accountID(accountingmanager_accountID);
+            }
+
+            boolean addAccountingManager = adao.addAccountingManager(accountingManager);
+            if (addUser && addAccountingManager) {
                 response.sendRedirect("adminHOME.jsp");
                 //successful
-            }else{
+            } else {
                 response.sendRedirect("signupfail.jsp");
             }
 
