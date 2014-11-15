@@ -22,14 +22,29 @@
     </head>
     <body>
 
-        <div id="logo"><img id="logoimg" src="images/logo.png"/></div>
 
-        <div id="content">
-            <div id="navbar">
-                <a href="adminHOME.jsp">HOME</a> ||
-                <a href="adminAccount.jsp">Account </a>
-            </div>
-        </div>
+        <header>
+            <div id="banner"> <a href="home.html"><img src="books.jpg"></a> </div>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a>    </li>
+                <li><a href="#">Category</a>
+                    <ul>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">Magazines</a></li>
+                        <li><a href="#">Audio CDs</a></li>
+                        <li><a href="#">DVDs</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Register</a>   </li>
+                <li><a href='#'>Account
+                        <ul>
+                            <li><a href='customerAccount.jsp'>Edit Account</a></li>
+                            <li><a href='#'>Log out</a></li>
+                        </ul>
+                </li>
+        </nav>
 
         <div id="actions">
             <a href="signup_productmanager.html">Add Product Manager</a>

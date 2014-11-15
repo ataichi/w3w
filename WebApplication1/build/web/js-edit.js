@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#actions').css({
         "position": "absolute",
         "background-color": "yellow",
-        "margin-top": "-15px",
+        "margin-top":"200px",
         "margin-left": "-10px",
         "height": "500px",
         "width": "150px"
@@ -17,7 +17,6 @@ $(document).ready(function () {
         "position": "absolute",
         "background-color": "bisque",
         "margin-left": "140px",
-        "margin-top": "-15px",
         "height": "500px",
         "width": "400px"
     });

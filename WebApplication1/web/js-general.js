@@ -29,7 +29,6 @@ $(document).ready(function () {
     $('#navbar').css({
         "padding-top": "75px",
         "padding-left": "1000px",
-        "background-color": "#FD97BE",
         "text-align": "left",
         "height": "40px"
     });
