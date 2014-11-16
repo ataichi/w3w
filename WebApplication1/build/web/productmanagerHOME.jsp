@@ -86,26 +86,37 @@
             <table>
                 <tr>
                     <td><center>Title</center>
-                    </td>
-                    <td><center>Stocks</center>
-                    </td>
-                    <td><center>Actions</center>
-                    </td>
+                </td>
+                <td><center>Stocks</center>
+                </td>
+                <td><center>Actions</center>
+                </td>
                 </tr>
                 <%
-                    for (int i = 0; i < productlist.size()-1; i++) {
+                    for (int i = 0; i < productlist.size() - 1; i++) {
                         out.println("<tr>"
                                 + "<td><center>"
                                 + productlist.get(i).getTitle()
                                 + "</center></td><td><center>"
                                 + productlist.get(i).getNumberStocks()
                                 + "</center></td><td><center>"
-                                + "EDIT REMOVE RESTOCK</center></td></tr>");
+                                + "<form id='" + productlist.get(i).getProductID() + "' method='post' action='EditProductServlet'>"
+                                + "<input type='hidden' id='product' name='product' value='" + productlist.get(i).getProductID() + "'/>"
+                                + "<input type='submit' id='submit' value='Edit' name='" + productlist.get(i).getProductID() + "' style='border-color: transparent; background-color: transparent'/>"
+                                + "</form>"
+                                + "<form id='" + productlist.get(i).getProductID() + "' method='post' action='RemoveProductServlet'>"
+                                + "<input type='hidden' id='product' name='product' value='" + productlist.get(i).getProductID() + "'/>"
+                                + "<input type='submit' value='Remove' name='" + productlist.get(i).getProductID() + "' style='border-color:transparent; background-color: transparent'/>"
+                                + "</form>"
+                                + "<form id='" + productlist.get(i).getProductID() + "' method='post' action='RestockProductServlet'>"
+                                + "<input type='hidden' id='product' name='product' value='" + productlist.get(i).getProductID() +"'/>"
+                                + "<input type='submit' value='Restock' name='" + productlist.get(i).getProductID() + "' style='border-color:transparent; background-color: transparent'/>"
+                                + "</form>"
+                                + "</center></td></tr>");
                     }
                 %>
             </table>
         </div>
-
 
     </body>
 </html>
