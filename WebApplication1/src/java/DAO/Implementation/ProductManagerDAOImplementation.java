@@ -5,6 +5,7 @@
  */
 package DAO.Implementation;
 
+import Beans.ProductBean;
 import Beans.ProductManagerBean;
 import DAO.Interface.ProductManagerDAOInterface;
 import DBConnection.Connector;
@@ -42,9 +43,9 @@ public class ProductManagerDAOImplementation implements ProductManagerDAOInterfa
                 productmanager_accountID = resultSet.getInt("prodmanager_accountID");
                 prodType = resultSet.getString("prodType");
 
-               bean.setProdType(prodType);
-               bean.setProdmanager_accountID(productmanager_accountID);
-               bean.setProductmanagerID(productmanagerID);
+                bean.setProdType(prodType);
+                bean.setProdmanager_accountID(productmanager_accountID);
+                bean.setProductmanagerID(productmanagerID);
 
                 System.out.println("hssere");
 
@@ -54,6 +55,78 @@ public class ProductManagerDAOImplementation implements ProductManagerDAOInterfa
 
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean addProduct(ProductBean product) {
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "insert into product (type, title, price, summary, genre, year, stocks) "
+                    + "values (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, product.getType());
+            ps.setString(2, product.getTitle());
+            ps.setDouble(3, product.getPrice());
+            ps.setString(4, product.getSummary());
+            ps.setString(5, product.getGenre());
+            ps.setInt(6, product.getYear());
+            ps.setInt(7, product.getNumberStocks());
+            ps.executeUpdate();
+            connection.close();
+            return true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public ProductBean getLastProduct() {
+        try {
+            Connector c = new Connector();
+            Connection connection = c.getConnection();
+            String query = "select * from product "
+                    + "order by productID desc "
+                    + "limit 1";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet resultSet = ps.executeQuery();
+
+            ProductBean bean = new ProductBean();
+            int productID, year, stocks;
+            String type, title, summary, genre;
+            double price;
+            while (resultSet.next()) {
+                productID = resultSet.getInt("productID");
+                year = resultSet.getInt("year");
+                stocks = resultSet.getInt("stocks");
+                
+                type = resultSet.getString("type");
+                title = resultSet.getString("title");
+                summary = resultSet.getString("summary");
+                genre = resultSet.getString("genre");
+                
+                price = resultSet.getDouble("price");
+
+                bean.setProductID(productID);
+                bean.setYear(year);
+                bean.setNumberStocks(stocks);
+                
+                bean.setType(type);
+                bean.setTitle(title);
+                bean.setSummary(summary);
+                bean.setGenre(genre);
+                
+                bean.setPrice(price);
+                
+                return bean;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AudioCDManagerDAOImplementation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

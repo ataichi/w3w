@@ -9,7 +9,9 @@ import Beans.AccountBean;
 import Beans.AudioCDBean;
 import Beans.ProductBean;
 import Beans.ProductManagerBean;
+import DAO.Implementation.AudioCDManagerDAOImplementation;
 import DAO.Implementation.ProductManagerDAOImplementation;
+import DAO.Interface.AudioCDManagerDAOInterface;
 import DAO.Interface.ProductManagerDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,6 +49,7 @@ public class AddProductServlet extends HttpServlet {
             ProductManagerBean productManager = new ProductManagerBean();
             ProductManagerDAOInterface pdao = new ProductManagerDAOImplementation();
             productManager = pdao.getProductManagerBeanById(homeproduct.getAccountID());
+            AudioCDManagerDAOInterface cdao = new AudioCDManagerDAOImplementation();
 
             ProductBean product = new ProductBean();
             String type, title, summary, genre;
@@ -60,7 +63,7 @@ public class AddProductServlet extends HttpServlet {
             price = Double.parseDouble(request.getParameter("productPrice"));
             year = Integer.parseInt(request.getParameter("productYear"));
             numberStocks = Integer.parseInt(request.getParameter("productStocks"));
-            
+
             product.setGenre(genre);
             product.setNumberStocks(numberStocks);
             product.setPrice(price);
@@ -68,21 +71,36 @@ public class AddProductServlet extends HttpServlet {
             product.setTitle(title);
             product.setType(type);
             product.setYear(year);
-            
+
             boolean addProduct = false;
-            if(type.equals("Audio CD")){
+            if (type.equals("Audio CD")) {// add audio cd
                 AudioCDBean cd = new AudioCDBean();
                 String artist, recordCompany;
-                
-                artist=request.getParameter("cdArtist");
-                recordCompany=request.getParameter("cdRecord");
-                
-                boolean addCD=false;
-                
-                
-                cd.setArtist(artist);
-                cd.setRecordCompany(recordCompany);
-                
+
+                artist = request.getParameter("cdArtist");
+                recordCompany = request.getParameter("cdRecord");
+
+                boolean addCD = false;
+
+                addProduct = pdao.addProduct(product);
+                product = pdao.getLastProduct();
+
+                if (addProduct) {
+                    cd.setAudiocd_productID(product.getProductID());
+                    cd.setArtist(artist);
+                    cd.setRecordCompany(recordCompany);
+
+                    addCD = cdao.addAudioCD(cd);
+
+                    if (addCD) { // success
+                        response.sendRedirect("productmanagerHOME.jsp");
+                    } else { //error
+                        response.sendRedirect("addproduct.jsp");
+                    }
+                } else { // may error
+                    response.sendRedirect("productmanagerHOME.jsp");
+                }
+
             }
 
         }

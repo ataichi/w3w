@@ -5,10 +5,13 @@
  */
 package DAO.Interface;
 
+import Beans.ProductBean;
 import Beans.ProductManagerBean;
 
 public interface ProductManagerDAOInterface {
     
     public ProductManagerBean getProductManagerBeanById(int id);
+    public boolean addProduct (ProductBean product);
+    public ProductBean getLastProduct();
     
 }

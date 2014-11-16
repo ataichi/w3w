@@ -6,7 +6,7 @@
 package DAO.Implementation;
 
 import Beans.AudioCDBean;
-import DAO.Interface.AudioManagerCDDAOInterface;
+import DAO.Interface.AudioCDManagerDAOInterface;
 import DBConnection.Connector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Danica
  */
-public class AudioCDManagerDAOImplementation implements AudioManagerCDDAOInterface {
+public class AudioCDManagerDAOImplementation implements AudioCDManagerDAOInterface {
 
     AudioCDBean bean = new AudioCDBean();
     ArrayList<AudioCDBean> alist = new ArrayList<AudioCDBean>();
