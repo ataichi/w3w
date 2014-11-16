@@ -93,7 +93,7 @@
                     </td>
                 </tr>
                 <%
-                    for (int i = 0; i < productlist.size(); i++) {
+                    for (int i = 0; i < productlist.size()-1; i++) {
                         out.println("<tr>"
                                 + "<td><center>"
                                 + productlist.get(i).getTitle()
