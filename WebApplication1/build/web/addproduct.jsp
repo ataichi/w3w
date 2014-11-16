@@ -118,16 +118,40 @@
                     <br/>
                     <tr>
                         <td>Artist</td>
-                    <td>
-                    <input type='text' id='cdArtist' name='cdArtist' onfocus='backWhite(this);'/>    
-                    </td>
+                        <td>
+                            <input type='text' id='cdArtist' name='cdArtist' onfocus='backWhite(this);'/>    
+                        </td>
                     <tr>
                         <td>
                             Record Company:
                         </td>
                         <td>
                             <input type='text' id='cdRecord' name ='cdRecord' onfocus='backWhite(this);'/>
-                 
+
+                        </td>
+                    </tr>
+
+                    <%}%>
+                    <%if (productManager.getProdType().equals("Books")) { %>
+                    <br/>
+                    <tr>
+                        <td>Author</td>
+                        <td>
+                            <input type='text' id='bookAuthor' name='bookAuthor' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Publisher:</td>
+                        <td>
+                            <input type='text' id='bookPublisher' name='bookPublisher' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date Published:
+                        </td>
+                        <td>
+                            <input type='date' id='bookDatePublished' name='bookDatePublished' onfocus='backWhite(this);'/>
                         </td>
                     </tr>
 
