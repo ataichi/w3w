@@ -18,6 +18,7 @@
 
         <script src="jquery-2.1.0.min.js" type="text/javascript"></script>
         <script src="js-general.js" type="text/javascript"></script>
+        <script src="js-productmanager.js" type="text/javascript"></script>
 
         <link rel="stylesheet" type="text/css" href="wadesign.css">
         <link rel="stylesheet" type="text/css" href="category.css">
@@ -57,8 +58,26 @@
            <br>
             <br>
         </div>
-
-
+        
+	<div id="tfheader">
+		<form id="tfnewsearch" method="get" action="SearchProductServlet">
+		        <input type="text" id="tfq" class="tftextinput2" name="q" size="21" maxlength="120" value="Search our website">
+                        <input type="submit" value=">" class="tfbutton2">
+		</form>
+	</div>
+        <div id="viewProducts">
+            <table>
+                <tr>
+                    <td>Title
+                    </td>
+                    <td>Stocks
+                    </td>
+                    <td>Actions
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
 
 
     </body>
