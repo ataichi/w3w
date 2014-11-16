@@ -5,6 +5,9 @@
  */
 package Servlet;
 
+import Beans.AccountBean;
+import DAO.Implementation.AccountDAOImplementation;
+import DAO.Interface.AccountDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,15 +38,65 @@ public class EditAccountingManagerAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditAccountingManagerAccountServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditAccountingManagerAccountServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            HttpSession session = request.getSession();
+            AccountBean account = (AccountBean) session.getAttribute("homeaccounting");
+
+            AccountBean bean = new AccountBean();
+            String firstName, lastName, middleInitial, username, emailAdd;
+
+            if (request.getParameter("editfirst").isEmpty()) {
+                firstName = account.getFirstName();
+            } else {
+                firstName = request.getParameter("editfirst");
+            }
+
+            if (request.getParameter("editlast").isEmpty()) {
+                lastName = account.getLastName();
+            } else {
+                lastName = request.getParameter("editlast");
+            }
+
+            if (request.getParameter("editmiddle").isEmpty()) {
+                middleInitial = account.getMiddleInitial();
+            } else {
+                middleInitial = request.getParameter("editmiddle");
+            }
+
+            if (request.getParameter("edituser").isEmpty()) {
+                username = account.getUsername();
+            } else {
+                username = request.getParameter("edituser");
+            }
+
+            if (request.getParameter("editemail").isEmpty()) {
+                emailAdd = account.getEmailAdd();
+            } else {
+                emailAdd = request.getParameter("editemail");
+            }
+            boolean locked = false;
+            String password = account.getPassword();
+            int id = account.getAccountID();
+            AccountDAOInterface accountdao = new AccountDAOImplementation();
+            bean.setAccountID(id);
+            bean.setFirstName(firstName);
+            bean.setLastName(lastName);
+            bean.setMiddleInitial(middleInitial);
+            bean.setUsername(username);
+            bean.setEmailAdd(emailAdd);
+            bean.setLocked(locked);
+            bean.setPassword(password);
+            bean.setAccountType("accounting manager");
+
+            boolean edit = accountdao.updateAccount(bean);
+            if (edit) {
+                session.setAttribute("homeaccounting", bean);
+                response.sendRedirect("accountingmanagerHOME.jsp");
+            } else {
+                session.setAttribute("homeaccounting", bean);
+                response.sendRedirect("accountingmanagerAccount.jsp");
+            }
+
         }
     }
 
