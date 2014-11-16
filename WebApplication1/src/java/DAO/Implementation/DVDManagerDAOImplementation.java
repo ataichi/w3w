@@ -73,7 +73,7 @@ public class DVDManagerDAOImplementation implements DVDManagerDAOInterface {
             ps.setString(3, DVD.getMainActors());
             ps.setString(4, DVD.getProductionCompany());
             
-            ps.executeQuery();
+            ps.executeUpdate();
             
             connection.close();
             return true;

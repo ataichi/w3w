@@ -8,13 +8,16 @@ package Servlet;
 import Beans.AccountBean;
 import Beans.AudioCDBean;
 import Beans.BookBean;
+import Beans.DVDBean;
 import Beans.ProductBean;
 import Beans.ProductManagerBean;
 import DAO.Implementation.AudioCDManagerDAOImplementation;
 import DAO.Implementation.BookManagerDAOImplementation;
+import DAO.Implementation.DVDManagerDAOImplementation;
 import DAO.Implementation.ProductManagerDAOImplementation;
 import DAO.Interface.AudioCDManagerDAOInterface;
 import DAO.Interface.BookManagerDAOInterface;
+import DAO.Interface.DVDManagerDAOInterface;
 import DAO.Interface.ProductManagerDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,9 +61,7 @@ public class AddProductServlet extends HttpServlet {
             ProductManagerBean productManager = new ProductManagerBean();
             ProductManagerDAOInterface pdao = new ProductManagerDAOImplementation();
             productManager = pdao.getProductManagerBeanById(homeproduct.getAccountID());
-            AudioCDManagerDAOInterface cdao = new AudioCDManagerDAOImplementation();
-            BookManagerDAOInterface bdao = new BookManagerDAOImplementation();
-            
+
             ProductBean product = new ProductBean();
             String type, title, summary, genre;
             double price;
@@ -84,6 +85,8 @@ public class AddProductServlet extends HttpServlet {
 
             boolean addProduct = false;
             if (type.equals("Audio CD")) {// add audio cd
+                AudioCDManagerDAOInterface cdao = new AudioCDManagerDAOImplementation();
+
                 AudioCDBean cd = new AudioCDBean();
                 String artist, recordCompany;
 
@@ -112,6 +115,8 @@ public class AddProductServlet extends HttpServlet {
                 }
 
             } else if (type.equals("Books")) {// add books
+                BookManagerDAOInterface bdao = new BookManagerDAOImplementation();
+
                 BookBean bean = new BookBean();
                 String author, publisher, bookDatePublished;
                 java.util.Date date;
@@ -122,7 +127,6 @@ public class AddProductServlet extends HttpServlet {
                 DateFormat formatter;
                 bookDatePublished = request.getParameter("bookDatePublished");
 
-                
                 formatter = new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     date = formatter.parse(bookDatePublished);
@@ -132,29 +136,57 @@ public class AddProductServlet extends HttpServlet {
                 } catch (ParseException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-                
+
                 bean.setAuthor(author);
                 bean.setPublisher(publisher);
-                
-                addProduct=pdao.addProduct(product);
+
+                addProduct = pdao.addProduct(product);
                 boolean addBook = false;
-                if(addProduct){
+                if (addProduct) {
                     product = pdao.getLastProduct();
                     int book_productID = product.getProductID();
                     bean.setBook_productID(book_productID);
                     addBook = bdao.addBook(bean);
-                    if(addBook){
+                    if (addBook) {
                         response.sendRedirect("productmanagerHOME.jsp");
-                    }else{
+                    } else {
+                        response.sendRedirect("addproduct.jsp");
+                    }
+                } else {
+                    out.println("productmanagerHOME.jsp");
+                }
+
+            } else if (type.equals("DVD")) {// add dvd
+                DVDBean bean = new DVDBean();
+                DVDManagerDAOInterface ddao = new DVDManagerDAOImplementation();
+
+                addProduct = pdao.addProduct(product);
+                if (addProduct) {//successfully added product
+                    int dvd_productID;
+                    String director, actors, productCompany;
+
+                    director = request.getParameter("dvdDirector");
+                    actors = request.getParameter("dvdActor");
+                    productCompany = request.getParameter("dvdProducer");
+
+                    bean.setDirector(director);
+                    bean.setMainActors(actors);
+                    bean.setProductionCompany(productCompany);
+                    product = pdao.getLastProduct();
+                    dvd_productID = product.getProductID();
+                    bean.setDvd_productID(dvd_productID);
+
+                    boolean addDvd = ddao.addDVD(bean);
+
+                    if (addDvd) {
+                        response.sendRedirect("productmanagerHOME.jsp");
+                    } else {
                         response.sendRedirect("addproduct.jsp");
                     }
                 }else{
-                    out.println("productmanagerHOME.jsp");
+                    reponse.sendRedirect("productmanagerHOME.jsp");
                 }
-                
-                
-                
+
             }
 
         }

@@ -113,7 +113,6 @@
                         </td>
                     </tr>
 
-
                     <%if (productManager.getProdType().equals("Audio CD")) {  %>
                     <br/>
                     <tr>
@@ -156,6 +155,26 @@
                     </tr>
 
                     <%}%>
+                    <% if (productManager.getProdType().equals("DVD")) { %>
+                    <br/>
+                    <tr>
+                        <td>Director:</td>
+                        <td>
+                            <input type='text' id='dvdDirector' name='dvdDirector' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Actor:</td>
+                        <td><input type='text' id='dvdActor' name='dvdActor' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Producer:</td>
+                        <td>
+                            <input type='text' id='dvdProducer' name='dvdProducer' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <% } %>
                 </table>
 
                 <input type='submit' value='Submit'/>
