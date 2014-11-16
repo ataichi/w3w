@@ -7,11 +7,16 @@ package DAO.Interface;
 
 import Beans.ProductBean;
 import Beans.ProductManagerBean;
+import java.util.ArrayList;
 
 public interface ProductManagerDAOInterface {
-    
+
     public ProductManagerBean getProductManagerBeanById(int id);
-    public boolean addProduct (ProductBean product);
+
+    public boolean addProduct(ProductBean product);
+
     public ProductBean getLastProduct();
-    
+
+    public ArrayList<ProductBean> getProductsByType(String type);
+
 }

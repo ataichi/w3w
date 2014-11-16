@@ -1,13 +1,8 @@
-a<%-- 
-    Document   : customerAccount
-    Created on : Nov 15, 2014, 10:27:25 AM
-    Author     : Giodee
---%>
 
 <%@page import="Beans.AccountBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    AccountBean homeuser = (AccountBean) session.getAttribute("homeuser");
+    AccountBean homeaccounting = (AccountBean) session.getAttribute("homeaccounting");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,23 +26,16 @@ a<%--
     <body>
 
         <header>
-            <div id="banner"> <a href="customerHOME.jsp"><img src="books.jpg"></a> </div>
+            <div id="banner"> <a href="accountingmanagerHOME.jsp"><img src="books.jpg"></a> </div>
         </header>
 
         <nav>
             <ul>
-                <li><a href="customerHOME.jsp">Home</a>    </li>
-                <li><a href="#">Category</a>
-                    <ul>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Magazines</a></li>
-                        <li><a href="#">Audio CDs</a></li>
-                        <li><a href="#">DVDs</a></li>
-                    </ul>
-                </li>
+                <li><a href="accountingmanagerHOME.jsp">Home</a>    </li>
+
                 <li><a href='#'>Account</a>
                     <ul>
-                        <li><a href='customerAccount.jsp'>Edit Account</a></li>
+                        <li><a href='accountingmanagerAccount.jsp'>Edit Account</a></li>
                         <li><a href='#'>Log out</a></li>
                     </ul>
                 </li>
@@ -57,25 +45,20 @@ a<%--
         <div id='actions'>
             <br>
             <br>
-            <a href='customerBilling.jsp'>Manage Billing Information</a>
+            <a href='#'>Insert actions here</a>
             <br/>
-            <br>
 
-            <a href='customerPayments.jsp'>Manage Payment Information</a>
-            <br/>
-            <br>
-            <a href='customerTransactions.jsp'>View Transactions</a>
-            <br/>
         </div>
 
         <div id='editAccount'>
-            <form action='EditCustomerAccountServlet'>
+            <form action='EditAccountingManagerAccountServlet'>
                 <table>
                     <tr>
                         <td>First Name:
                         </td>
                         <td>
-                            <input type='text' id='editfirst' name='editfirst' value='<% out.println(homeuser.getFirstName()); %>' onblur='fnameCheck();' onfocus='backWhite(this);'/>
+                            <input type='text' id='editfirst' name='editfirst' value='<% out.println(homeaccounting.getFirstName()); %>' onblur='fnameCheck();' onfocus='backWhite(this);'/>
+
                         </td>
                     </tr>
                     <tr>
@@ -83,7 +66,7 @@ a<%--
                             Middle Name:
                         </td>
                         <td>
-                            <input type='text' id='editmiddle' name='editmiddle' value='<% out.println(homeuser.getMiddleInitial()); %>' onblur='fnameCheck();' onfocus='backWhite(this)'/>
+                            <input type='text' id='editmiddle' name='editmiddle' value='<% out.println(homeaccounting.getMiddleInitial()); %>' onblur='fnameCheck();' onfocus='backWhite(this)'/>
                         </td>
                     </tr>
                     <tr>
@@ -91,7 +74,7 @@ a<%--
                             Last Name:
                         </td>
                         <td>
-                            <input id='editlast' type='text' name="editlast" value='<% out.println(homeuser.getLastName()); %>' onblur='lnameCheck();' onfocus='backWhite(this);'/>
+                            <input id='editlast' type='text' name="editlast" value='<% out.println(homeaccounting.getLastName()); %>' onblur='lnameCheck();' onfocus='backWhite(this);'/>
                         </td>
                     </tr>
                     <tr>
@@ -99,7 +82,7 @@ a<%--
                             Username:
                         </td>
                         <td>
-                            <input id='edituser' type='text' name="edituser" value='<% out.println(homeuser.getUsername()); %>' onblur='unameCheck();' onfocus='backWhite(this);'/>
+                            <input id='edituser' type='text' name="edituser" value='<% out.println(homeaccounting.getUsername()); %>' onblur='unameCheck();' onfocus='backWhite(this);'/>
 
                         </td>
                     </tr>
@@ -108,16 +91,18 @@ a<%--
                             Email:
                         </td>
                         <td>
-                            <input id='editemail' type='email' name="editemail" value='<% out.println(homeuser.getEmailAdd());%>' onblur='emailCheck();' onfocus='backWhite(this);'/>
+                            <input id='editemail' type='email' name="editemail" value='<% out.println(homeaccounting.getEmailAdd());%>' onblur='emailCheck();' onfocus='backWhite(this);'/>
 
                         </td>
                     </tr>
                 </table>
+
                 <input type='submit' id='save' value='Save Changes'/>
             </form>
-            <a href='customerHOME.jsp'><button>Cancel</button></a>
+            <a href='accountingmanagerHOME.jsp'><button>Cancel</button></a>
 
         </div>
+
 
     </body>
 </html>

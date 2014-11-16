@@ -3,10 +3,27 @@
     Created on : Nov 9, 2014, 10:11:04 PM
     Author     : Giodee
 --%>
+<%@page import="Beans.ProductBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.Interface.BookManagerDAOInterface"%>
+<%@page import="Beans.DVDBean"%>
+<%@page import="Beans.AudioCDBean"%>
+<%@page import="Beans.MagazineBean"%>
+<%@page import="Beans.BookBean"%>
+<%@page import="DAO.Implementation.ProductManagerDAOImplementation"%>
+<%@page import="DAO.Interface.ProductManagerDAOInterface"%>
+<%@page import="Beans.ProductManagerBean"%>
 <%@page import="Beans.AccountBean"%>
 
 <%
     AccountBean homeproduct = (AccountBean) session.getAttribute("homeproduct");
+    ProductManagerDAOInterface pdao = new ProductManagerDAOImplementation();
+    ProductManagerBean managerBean = pdao.getProductManagerBeanById(homeproduct.getAccountID());
+    ArrayList<ProductBean> productlist = (ArrayList<ProductBean>) session.getAttribute("productlist");
+    ArrayList<BookBean> booklist = (ArrayList<BookBean>) session.getAttribute("booklist");
+    ArrayList<AudioCDBean> audiocdlist = (ArrayList<AudioCDBean>) session.getAttribute("audiocdlist");
+    ArrayList<MagazineBean> magazinelist = (ArrayList<MagazineBean>) session.getAttribute("magazinelist");
+    ArrayList<DVDBean> dvdlist = (ArrayList<DVDBean>) session.getAttribute("dvdlist");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,31 +68,41 @@
         <div id="actions">
             <br/>
             <br/>
-            
+
             <a href="addproduct.jsp">Add Product</a>
             <br>
             <br>
-           <br>
+            <br>
             <br>
         </div>
-        
-	<div id="tfheader">
-		<form id="tfnewsearch" method="get" action="SearchProductServlet">
-		        <input type="text" id="tfq" class="tftextinput2" name="q" size="21" maxlength="120" value="Search our website">
-                        <input type="submit" value=">" class="tfbutton2">
-		</form>
-	</div>
+
+        <div id="tfheader">
+            <form id="tfnewsearch" method="get" action="SearchProductServlet">
+                <input type="text" id="tfq" class="tftextinput2" name="q" size="21" maxlength="120" value="Search our website">
+                <input type="submit" value=">" class="tfbutton2">
+            </form>
+        </div>
         <div id="viewProducts">
             <table>
                 <tr>
-                    <td>Title
+                    <td><center>Title</center>
                     </td>
-                    <td>Stocks
+                    <td><center>Stocks</center>
                     </td>
-                    <td>Actions
+                    <td><center>Actions</center>
                     </td>
                 </tr>
-                
+                <%
+                    for (int i = 0; i < productlist.size(); i++) {
+                        out.println("<tr>"
+                                + "<td><center>"
+                                + productlist.get(i).getTitle()
+                                + "</center></td><td><center>"
+                                + productlist.get(i).getNumberStocks()
+                                + "</center></td><td><center>"
+                                + "EDIT REMOVE RESTOCK</center></td></tr>");
+                    }
+                %>
             </table>
         </div>
 
