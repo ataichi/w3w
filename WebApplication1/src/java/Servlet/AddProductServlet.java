@@ -9,15 +9,18 @@ import Beans.AccountBean;
 import Beans.AudioCDBean;
 import Beans.BookBean;
 import Beans.DVDBean;
+import Beans.MagazineBean;
 import Beans.ProductBean;
 import Beans.ProductManagerBean;
 import DAO.Implementation.AudioCDManagerDAOImplementation;
 import DAO.Implementation.BookManagerDAOImplementation;
 import DAO.Implementation.DVDManagerDAOImplementation;
+import DAO.Implementation.MagazineManagerDAOImplementation;
 import DAO.Implementation.ProductManagerDAOImplementation;
 import DAO.Interface.AudioCDManagerDAOInterface;
 import DAO.Interface.BookManagerDAOInterface;
 import DAO.Interface.DVDManagerDAOInterface;
+import DAO.Interface.MagazineManagerDAOInterface;
 import DAO.Interface.ProductManagerDAOInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -184,9 +187,55 @@ public class AddProductServlet extends HttpServlet {
                         response.sendRedirect("addproduct.jsp");
                     }
                 }else{
-                    reponse.sendRedirect("productmanagerHOME.jsp");
+                    response.sendRedirect("productmanagerHOME.jsp");
+                    
                 }
 
+            }else if(type.equals("Magazine")){// add magazine
+                MagazineBean bean = new MagazineBean();
+                MagazineManagerDAOInterface mdao = new MagazineManagerDAOImplementation();
+                
+                addProduct=pdao.addProduct(product);
+                if(addProduct){
+                    int magazine_productID;
+                    String publisher, datePublished;
+                    int volumeNo, issueNo;
+                    java.util.Date date;
+                    java.sql.Date sqlDate;
+                    
+                    product = pdao.getLastProduct();
+                    magazine_productID=product.getProductID();
+                    
+                    DateFormat formatter;
+                    datePublished = request.getParameter("magazineDate");
+                    formatter = new SimpleDateFormat ("yyyy-MM-dd");
+                    
+                    try{
+                        date = formatter.parse(datePublished);
+                        sqlDate = new java.sql.Date(date.getTime());
+                        bean.setDatePublished(sqlDate);
+                    }catch(ParseException ex){
+                        Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    publisher = request.getParameter("magazinePublisher");
+                    volumeNo = Integer.parseInt(request.getParameter("magazineVolume"));
+                    issueNo = Integer.parseInt(request.getParameter("magazineIssue"));
+                    
+                    bean.setMagazine_productID(magazine_productID);
+                    bean.setPublisher(publisher);
+                    bean.setVolumeNo(volumeNo);
+                    bean.setIssueNo(issueNo);
+                    
+                    boolean addMagazine=mdao.addMagazine(bean);
+                    
+                    if(addMagazine){
+                        response.sendRedirect("productmanagerHOME.jsp");
+                    }else{
+                        response.sendRedirect("addproduct.jsp");
+                    }
+                }else{
+                    response.sendRedirect("productmanagerHOME.jsp");
+                }
             }
 
         }

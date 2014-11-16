@@ -175,6 +175,33 @@
                         </td>
                     </tr>
                     <% } %>
+                    <% if (productManager.getProdType().equals("Magazine")) { %>
+                    <br/>
+                    <tr>
+                        <td>Volume No:</td>
+                        <td>
+                            <input type='text' id='magazineVolume' name='magazineVolume' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Issue No:</td>
+                        <td><input type='text' id='magazineIssue' name='magazineIssue' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Publisher:</td>
+                        <td>
+                            <input type='text' id='magazinePublisher' name='magazinePublisher' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date Published</td>
+                        <td>
+                            <input type='date' id='magazineDate' name='magazineDate' onfocus='backWhite(this);'/>
+                        </td>
+                    </tr>
+                    <% }%>
+                    
                 </table>
 
                 <input type='submit' value='Submit'/>
